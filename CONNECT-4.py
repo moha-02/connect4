@@ -1,4 +1,5 @@
 def vsIA():
+<<<<<<< HEAD
     return print("okey")
 
 def JugadorvsJugador():
@@ -40,3 +41,4 @@ while controlMenu == False:
     elif Opcion !=1 or Opcion !=2 or Opcion !=3 or Opcion !=4 :
         Menu()
         Opcion = int(input="Valor incorrecto.Vuelva a introducir un valor: ")
+    
