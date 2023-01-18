@@ -1,5 +1,5 @@
 def vsIA():
-<<<<<<< HEAD
+
     return print("okey")
 
 def JugadorvsJugador():
