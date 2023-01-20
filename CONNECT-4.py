@@ -1,5 +1,4 @@
 def vsIA():
-
     return print("okey")
 
 def JugadorvsJugador():
