@@ -23,8 +23,36 @@ En esta etapa se compondrá la codificación del juego.Se hará un fichero maest
 ### Cuarta Fase: Test de pruebas y errores
 En esta ultima fase ponemos a prueba el juego y verificar las distintas funcionalidades que la componen.También servira para detectar cualquier error que pueda surgir a la hora de ejecutarlo.
 
-DIVISION DEL PROYECTO
 
+# Documentación del Juego
+
+## Documento Definición Del juego
+
+A continuación,explicaremos como se juega al 4 en raya.Como queremos hacer 2 modos,solo desarollaremos una de ellos,ya que tienen casi las mismas funcionalidades.
+
+**4 EN RAYA (1 VS 1)**
+- **Antes de la partida**
+~~~
+1. Los jugadores han de seleccionar el tipo de ficha que querrán para jugar.
+2. Ya con las fichas seleccionadas se le repartiran 21 fichas a cada uno porque el tablero solo tiene 6x7 casillas.
+3. Se decide quien de los dos jugaadores metera la 1º ficha al tablero
+~~~
+***Inicio partida***
+
+- **Partida**
+~~~
+1.En cada turno los jugadores colocarán una ficha de su color en una columna y esta cae hasta la primera casilla disponible
+~~~
+- **Finalización de Partida**
+
+Hay 2 formas de finalizar el juego:
+~~~
+1. El primer jugador en ubicar 4 fichas del mismo color seguidas en horizontal,vertical u oblicuo.
+2. Si el tablero termina con todas las casillas ocupadas y no hay 4 fichas del mismo color seguidas,la partida termina en empate.
+~~~
+
+
+DIVISION DEL PROYECTO
 TABLERO: Mohammed
 MENU: Fabian
 CONTRA CPU:Mohammed
