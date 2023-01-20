@@ -41,3 +41,6 @@ while controlMenu == False:
         Menu()
         Opcion = int(input="Valor incorrecto.Vuelva a introducir un valor: ")
     
+
+def tablero():
+    
