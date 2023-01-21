@@ -1,5 +1,5 @@
 
-'''
+
 def JugadorvsJugador():
     return print ("vale")
 
@@ -39,8 +39,7 @@ while controlMenu == False:
     elif Opcion !=1 or Opcion !=2 or Opcion !=3 or Opcion !=4 :
         Menu()
         Opcion = int(input="Valor incorrecto.Vuelva a introducir un valor: ")
-    
-'''
+
 
 ################## TABLERO (matriz: array 2D, 6 filas x 7 columnas) ######################################3
 columnaspossible = ["A","B","C","D","E","F","G"]
@@ -107,11 +106,11 @@ def ganador(fitcha):
 
 
 ######### INTERRUPTOR DEL JUEGO + INTERCAMBIO DE TURNOS ##############
-game_over = False
+game_over2 = True
 turn = 0
 ################ BUCLE DE EJECUCION DE LA PARTIDA ###########################3
 imprimir_tablero(tablero) ##### IMPRIMIR TABLERO PARA PRIMER VISTAZO
-while not game_over:
+while not game_over2:
   if turn == 0:
     col = int(input("Introduzca la columna que desea jugador 1 : "))
     while hueco(tablero,col) == False:
@@ -123,7 +122,7 @@ while not game_over:
       print(imprimir_tablero(tablero))
       if ganador("🔵") == True:
         print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
-        game_over == True
+        game_over2 == True
         break
       tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
   else:
@@ -137,8 +136,8 @@ while not game_over:
       print(imprimir_tablero(tablero))
       if ganador("🔴") == True:
         print("EL jugador 🔴 es el ganador, FELICIDADES!!!!!")
-        game_over == True
+        game_over2 == True
         break
       tablero = tablero[::-1]
-  turn +=1
-  turn = turn%2
+  turn +=1  ##### Permite intercalar turnos ""
+  turn = turn%2 #### permite interclar turnos ""
