@@ -1,8 +1,5 @@
-
-
-def JugadorvsJugador():
-    return print ("vale")
-
+######## INTERRUPTORES DEL LAS DIFERENTES OPCIONES ########
+game_over2 = True #### interruptor para 1vs1
 def Historial():
     return print("okidoki")
 
@@ -27,9 +24,9 @@ while controlMenu == False:
         Menu()
         Opcion =int(input("Que desea hacer ahora: "))
     elif Opcion == 2:
-        JugadorvsJugador()
-        Menu()
-        Opcion =int(input("Que desea hacer ahora: "))
+        game_over2 = False
+        controlMenu = True
+        break
     elif Opcion == 3:
         Historial()
         Menu()
@@ -39,6 +36,7 @@ while controlMenu == False:
     elif Opcion !=1 or Opcion !=2 or Opcion !=3 or Opcion !=4 :
         Menu()
         Opcion = int(input="Valor incorrecto.Vuelva a introducir un valor: ")
+    
 
 
 ################## TABLERO (matriz: array 2D, 6 filas x 7 columnas) ######################################3
@@ -105,8 +103,7 @@ def ganador(fitcha):
           return True
 
 
-######### INTERRUPTOR DEL JUEGO + INTERCAMBIO DE TURNOS ##############
-game_over2 = True
+#########  INTERCAMBIO DE TURNOS (inicializar turno en 0)##############
 turn = 0
 ################ BUCLE DE EJECUCION DE LA PARTIDA ###########################3
 imprimir_tablero(tablero) ##### IMPRIMIR TABLERO PARA PRIMER VISTAZO
