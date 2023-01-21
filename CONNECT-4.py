@@ -102,7 +102,7 @@ def ganador(fitcha):
   ####### COMPROBAR DIAGONAL POSITIVA ############
     for y in range(columnas-3):
       for x in range(filas-3):
-        if tablero[x][y] == fitcha and tablero[x+1][y+1] == fitcha and tablero[x+2][y+2] == tablero and tablero[x+3][y+3] == fitcha:
+        if tablero[x][y] == fitcha and tablero[x+1][y+1] == fitcha and tablero[x+2][y+2] == fitcha and tablero[x+3][y+3] == fitcha:
           return True
 
 
