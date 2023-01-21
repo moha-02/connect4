@@ -1,7 +1,5 @@
-'''
-def vsIA():
-    return print("okey")
 
+'''
 def JugadorvsJugador():
     return print ("vale")
 
@@ -43,11 +41,15 @@ while controlMenu == False:
         Opcion = int(input="Valor incorrecto.Vuelva a introducir un valor: ")
     
 '''
+
+
+
 ################## TABLERO (matriz: array 2D, 6 filas x 7 columnas) ######################################3
 columnaspossible = ["A","B","C","D","E","F","G"]
 tablero = [["","","","","","",""], ["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""]]
 filas = 6
 columnas = 7
+
 ################### IMPRIMIR TABLERO ##############################
 def imprimir_tablero():
   print("\n     1    2    3    4    5    6    7  ", end="")
@@ -62,9 +64,8 @@ def imprimir_tablero():
       else:
         print(" ", tablero[x][y], end="  |")
   print("\n   +----+----+----+----+----+----+----+")
-
+'''
 ############ COMPROBAR GANADOR ######################
-
 def ganador(fitcha):
   ######## COMPROBAR ESPACIOS HORIXONTALES ##########
   for y in range(columnas - 3):
@@ -79,16 +80,47 @@ def ganador(fitcha):
         return True
 
   ##### COMPROBAR DIAGONAL (arriba a la derecha a abajo a la izquierda) #########################################
-  for x in range(filas - 3):
-    for y in range(3, columnas):
+  for y in range(columnas - 3):
+    for x in range(3, filas):
       if tablero[x][y] == fitcha and tablero[x+1][y-1] == fitcha and tablero[x+2][y-2] == fitcha and tablero[x+3][y-3] == fitcha:
-        print("\nGame over", fitcha, "wins! Thank you for playing :)")
         return True
 
-  ### Check upper left to bottom right diagonal spaces
-  for x in range(filas - 3):
-    for y in range(columnas - 3):
+  ######## COMPROBAR DIAGONAL (arriba a la izquierda a abajo a la derecha) ########################################333
+  for y in range(columnas - 3):
+    for x in range(filas - 3):
       if tablero[x][y] == fitcha and tablero[x+1][y+1] == fitcha and tablero[x+2][y+2] == fitcha and tablero[x+3][y+3] == fitcha:
-        print("\nGame over", fitcha, "wins! Thank you for playing :)")
         return True
   return False
+'''
+############### COMPROBAR LUGAR VALIDO (si columna correcta) ##########
+def hueco(tablero, col):
+    return tablero[filas-1][col] == 0
+
+########### HUECO DISPONIBLE (fila disponible en columna seleccionada) ##########
+def hueco_disponible(tablero, col):
+    for x in range(filas):
+        if tablero[x][col] == 0:
+            return x
+
+###### INTRODUCIR FITCHA ################
+def meter_fitcha(tablero, row, col, fitcha):
+    tablero[row][col] = fitcha
+
+def vsIA():
+  game_over = False
+  turno = 0
+  while not game_over:
+    if turno == 0:
+      col = int(input("Jugador 1 elija columna"))
+      if hueco(tablero,col):
+        fila = hueco_disponible(tablero,col)
+        meter_fitcha(tablero,fila,col,"🔵")
+        imprimir_tablero()
+    else:
+      col = int(input("Jugador 2 elija columna"))
+      if hueco(tablero,col):
+        fila = hueco_disponible(tablero,col)
+        meter_fitcha(tablero,fila,col,"🔴")
+        imprimir_tablero()
+    turno +=1
+    turno = turno%2
