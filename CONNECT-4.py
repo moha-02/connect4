@@ -79,10 +79,33 @@ def hueco_disponible(tablero, col):
 def meter_fitcha(tablero, fila_disp, col, fitcha):
     tablero[fila_disp][col] = fitcha
 
+############ COMPROBAR GANADOR ######################
+def ganador(fitcha):
+  ######## COMPROBAR ESPACIOS HORIZONTALES ##########
+  for y in range(columnas - 3):
+    for x in range(filas):
+       if tablero[x][y] == fitcha and tablero[x][y+1] == fitcha and tablero[x][y+2] == fitcha and tablero[x][y+3] == fitcha:
+        return True
+
+  #### COMPROBAR ESPACIOS VERTICALES ###############
+  for y in range(columnas):
+    for x in range(filas - 3):
+       if tablero[x][y] == fitcha and tablero[x+1][y] == fitcha and tablero[x+2][y] == fitcha and tablero[x+3][y] == fitcha:
+        return True
+
+  ######COMPROBAR DIAGONAL ########### #######
+  for c in range(COLUMN_COUNT-3):
+    for r in range(3, ROW_COUNT):
+      if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2] == piece and board[r-3][c+3] == piece:
+        return True
+
+
+
 ######### INTERRUPTOR DEL JUEGO + INTERCAMBIO DE TURNOS ##############
 game_over = False
 turn = 0
 ################ BUCLE DE EJECUCION DE LA PARTIDA ###########################3
+imprimir_tablero(tablero) ##### IMPRIMIR TABLERO PARA PRIMER VISTAZO
 while not game_over:
   if turn == 0:
     col = int(input("Introduzca la columna que desea jugador 1 : "))
@@ -93,6 +116,10 @@ while not game_over:
       meter_fitcha(tablero,fila_disp,col,"🔵")
       tablero = tablero[::-1] ####### el tablero se imprime al reves debido al comportamiento de la matriz /// con este metodo se imprime como toca #######
       print(imprimir_tablero(tablero))
+      if ganador("🔵") == True:
+        print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
+        game_over == True
+        break
       tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
   else:
     col = int(input("Introduzca la columna que desea jugador 2 : "))
@@ -103,6 +130,10 @@ while not game_over:
       meter_fitcha(tablero,fila_disp,col,"🔴")
       tablero = tablero[::-1]
       print(imprimir_tablero(tablero))
+      if ganador("🔴") == True:
+        print("EL jugador 🔴 es el ganador, FELICIDADES!!!!!")
+        game_over == True
+        break
       tablero = tablero[::-1]
   turn +=1
   turn = turn%2
