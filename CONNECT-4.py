@@ -93,12 +93,17 @@ def ganador(fitcha):
        if tablero[x][y] == fitcha and tablero[x+1][y] == fitcha and tablero[x+2][y] == fitcha and tablero[x+3][y] == fitcha:
         return True
 
-  ######COMPROBAR DIAGONAL ########### #######
-  for c in range(COLUMN_COUNT-3):
-    for r in range(3, ROW_COUNT):
-      if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2] == piece and board[r-3][c+3] == piece:
+  ######COMPROBAR DIAGONAL NEGATIVA ########### #######
+  for y in range(columnas-3):
+    for x in range(3, filas):
+      if tablero[x][y] == fitcha and tablero[x-1][y+1] == fitcha and tablero[x-2][y+2] == fitcha and tablero[x-3][y+3] == fitcha:
         return True
 
+  ####### COMPROBAR DIAGONAL POSITIVA ############
+    for y in range(columnas-3):
+      for x in range(filas-3):
+        if tablero[x][y] == fitcha and tablero[x+1][y+1] == fitcha and tablero[x+2][y+2] == tablero and tablero[x+3][y+3] == fitcha:
+          return True
 
 
 ######### INTERRUPTOR DEL JUEGO + INTERCAMBIO DE TURNOS ##############
