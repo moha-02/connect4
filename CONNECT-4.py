@@ -1,9 +1,12 @@
 ######## INTERRUPTORES DEL LAS DIFERENTES OPCIONES ########
 game_over2 = True #### interruptor para 1vs1
+
+#############################################################
+
 def Historial():
     return print("okidoki")
 
-controlMenu = False 
+########################## MENU DEL JUEGO (activa los interruptores) #####################################
 def Menu():
     print("******************************************")
     print("*              CONNECT-4                 *")
