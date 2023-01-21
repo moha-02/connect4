@@ -67,3 +67,6 @@ def printGameBoard():
 
 def modifyTurn(spacePicked, turn):
   gameBoard[spacePicked[0]][spacePicked[1]] = turn
+
+
+print(printGameBoard())
