@@ -43,30 +43,52 @@ while controlMenu == False:
         Opcion = int(input="Valor incorrecto.Vuelva a introducir un valor: ")
     
 '''
-print("Welcome to Connect Four")
-print("-----------------------")
-
-possibleLetters = ["A","B","C","D","E","F","G"]
-gameBoard = [["","","","","","",""], ["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""]]
-rows = 6
-cols = 7
-
-def printGameBoard():
-  print("\n     A    B    C    D    E    F    G  ", end="")
-  for x in range(rows):
+################## TABLERO (matriz: array 2D, 6 filas x 7 columnas) ######################################3
+columnaspossible = ["A","B","C","D","E","F","G"]
+tablero = [["","","","","","",""], ["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""]]
+filas = 6
+columnas = 7
+################### IMPRIMIR TABLERO ##############################
+def imprimir_tablero():
+  print("\n     1    2    3    4    5    6    7  ", end="")
+  for x in range(filas):
     print("\n   +----+----+----+----+----+----+----+")
-    print(x, " |", end="")
-    for y in range(cols):
-      if(gameBoard[x][y] == "🔵"):
-        print("",gameBoard[x][y], end=" |")
-      elif(gameBoard[x][y] == "🔴"):
-        print("", gameBoard[x][y], end=" |")
+    print("   |", end="")
+    for y in range(columnas):
+      if(tablero[x][y] == "🔵"):
+        print("",tablero[x][y], end=" |")
+      elif(tablero[x][y] == "🔴"):
+        print("", tablero[x][y], end=" |")
       else:
-        print(" ", gameBoard[x][y], end="  |")
+        print(" ", tablero[x][y], end="  |")
   print("\n   +----+----+----+----+----+----+----+")
 
-def modifyTurn(spacePicked, turn):
-  gameBoard[spacePicked[0]][spacePicked[1]] = turn
+############ COMPROBAR GANADOR ######################
 
+def ganador(fitcha):
+  ######## COMPROBAR ESPACIOS HORIXONTALES ##########
+  for y in range(columnas - 3):
+    for x in range(filas):
+       if tablero[x][y] == fitcha and tablero[x][y+1] == fitcha and tablero[x][y+2] == fitcha and tablero[x][y+3] == fitcha:
+        return True
 
-print(printGameBoard())
+  #### COMPROBAR ESPACIOS VERTICALES ###############
+  for y in range(columnas):
+    for x in range(filas - 3):
+       if tablero[x][y] == fitcha and tablero[x+1][y] == fitcha and tablero[x+2][y] == fitcha and tablero[x+3][y] == fitcha:
+        return True
+
+  ##### COMPROBAR DIAGONAL (arriba a la derecha a abajo a la izquierda) #########################################
+  for x in range(filas - 3):
+    for y in range(3, columnas):
+      if tablero[x][y] == fitcha and tablero[x+1][y-1] == fitcha and tablero[x+2][y-2] == fitcha and tablero[x+3][y-3] == fitcha:
+        print("\nGame over", fitcha, "wins! Thank you for playing :)")
+        return True
+
+  ### Check upper left to bottom right diagonal spaces
+  for x in range(filas - 3):
+    for y in range(columnas - 3):
+      if tablero[x][y] == fitcha and tablero[x+1][y+1] == fitcha and tablero[x+2][y+2] == fitcha and tablero[x+3][y+3] == fitcha:
+        print("\nGame over", fitcha, "wins! Thank you for playing :)")
+        return True
+  return False
