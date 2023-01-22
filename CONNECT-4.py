@@ -94,28 +94,28 @@ def winCPU(FICHA):
   for y in range(columnas - 3):
     for x in range(filas):
        if tablero[x][y] == FICHA and tablero[x][y+1] == FICHA and tablero[x][y+2] == FICHA and tablero[x][y+3]=="":
-        tablero[x][y+3]==FICHA
+        tablero[x][y+3] = FICHA
         return tablero
 
   #### COMPROBAR ESPACIOS VERTICALES ###############
   for y in range(columnas):
     for x in range(filas - 3):
        if tablero[x][y] == FICHA and tablero[x+1][y] == FICHA and tablero[x+2][y] == FICHA and tablero[x+3][y]=="":
-        tablero[x+3][y]==FICHA
+        tablero[x+3][y] = FICHA
         return tablero
 
   ######COMPROBAR DIAGONAL NEGATIVA ########### #######
   for y in range(columnas-3):
     for x in range(3, filas):
       if tablero[x][y] == FICHA and tablero[x-1][y+1] == FICHA and tablero[x-2][y+2] == FICHA and tablero[x-3][y+3]=="":
-        tablero[x-3][y+3]==FICHA
+        tablero[x-3][y+3] = FICHA
         return tablero
 
   ####### COMPROBAR DIAGONAL POSITIVA ############
     for y in range(columnas-3):
       for x in range(filas-3):
         if tablero[x][y] == FICHA and tablero[x+1][y+1] == FICHA and tablero[x+2][y+2] == FICHA and tablero[x+3][y+3]=="":
-          tablero[x+3][y+3]==FICHA
+          tablero[x+3][y+3] = FICHA
           return tablero
 
 
@@ -156,28 +156,28 @@ def evitarDerrotaCPU(ficha,FICHA):
   for y in range(columnas - 3):
     for x in range(filas):
        if tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == ficha and tablero[x][y+3]=="":
-        tablero[x][y+3]==FICHA
+        tablero[x][y+3] = FICHA
         return tablero
 
   #### COMPROBAR ESPACIOS VERTICALES ###############
   for y in range(columnas):
     for x in range(filas - 3):
        if tablero[x][y] == ficha and tablero[x+1][y] == ficha and tablero[x+2][y] == ficha and tablero[x+3][y]=="":
-        tablero[x+3][y]==FICHA
+        tablero[x+3][y] = FICHA
         return tablero
 
   ######COMPROBAR DIAGONAL NEGATIVA ########### #######
   for y in range(columnas-3):
     for x in range(3, filas):
       if tablero[x][y] == ficha and tablero[x-1][y+1] == ficha and tablero[x-2][y+2] == ficha and tablero[x-3][y+3]=="":
-        tablero[x-3][y+3]==FICHA
+        tablero[x-3][y+3] = FICHA
         return tablero
 
   ####### COMPROBAR DIAGONAL POSITIVA ############
     for y in range(columnas-3):
       for x in range(filas-3):
         if tablero[x][y] == ficha and tablero[x+1][y+1] == ficha and tablero[x+2][y+2] == ficha and tablero[x+3][y+3]=="":
-          tablero[x+3][y+3]==FICHA
+          tablero[x+3][y+3] = FICHA
           return tablero
 
 
@@ -305,8 +305,24 @@ def inicioVsCPUmodoDificil(tablero):
       print("CPU pensando..................")
       if movimientoGanadorCPU("🔴") == True:
           winCPU("🔴")
+          tablero = tablero[::-1]
+          print(imprimir_tablero(tablero))
+          if ganador("🔴") == True:
+            print("Ha ganado la CPU,:P")
+            gameOver3 == True
+            vaciarTablero(tablero)
+            return historial
+          tablero = tablero [::-1]
       elif moviminetoGanadorUsuario("🔵") == True:
         evitarDerrotaCPU("🔵","🔴")
+        tablero = tablero[::-1]
+        print(imprimir_tablero(tablero))
+        if ganador("🔴") == True:
+            print("Ha ganado la CPU,:P")
+            gameOver3 == True
+            vaciarTablero(tablero)
+            return historial
+        tablero = tablero [::-1]
       else:
         eleccionCPU = random.randint(0,6)
         while hueco(tablero,eleccionCPU)== False:
@@ -314,15 +330,14 @@ def inicioVsCPUmodoDificil(tablero):
         if hueco(tablero,eleccionCPU)== True:
           fila_disponible = hueco_disponible(tablero,eleccionCPU)
           meter_fitcha(tablero,fila_disponible,eleccionCPU,"🔴")
-    
-      tablero = tablero[::-1]
-      print(imprimir_tablero(tablero))
-      if ganador("🔴") == True:
-          print("Ha ganado la CPU,:P")
-          gameOver3 == True
-          vaciarTablero(tablero)
-          return historial
-      tablero = tablero [::-1]
+          tablero = tablero[::-1]
+          print(imprimir_tablero(tablero))
+          if ganador("🔴") == True:
+            print("Ha ganado la CPU,:P")
+            gameOver3 == True
+            vaciarTablero(tablero)
+            return historial
+          tablero = tablero [::-1]
     turno +=1  ##### Permite intercalar turnos ""
     turno = turno%2 #### permite interclar turnos ""
       
