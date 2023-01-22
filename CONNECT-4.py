@@ -113,9 +113,9 @@ def inicio1vs1(tablero,historial):
     turn +=1  ##### Permite intercalar turnos ""
     turn = turn%2 #### permite interclar turnos ""
 
+
 def iniciovsCPU(tablero):
   turno = 0 #Controlador de turnos
-  gameOver = True #Controlador del bucle While
   imprimir_tablero(tablero)
   while not gameOver:
     if turno == 0:
@@ -139,9 +139,9 @@ def iniciovsCPU(tablero):
         tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
     else:
       print("CPU pensando..................")
-      eleccionCPU = random.choice(0,1,2,3,4,5,6)
-      while hueco(tablero,eleccionCPU)== True:
-        eleccionCPU = random.choice(0,1,2,3,4,5,6)
+      eleccionCPU = random.randint(0,6)
+      while hueco(tablero,eleccionCPU)== False:
+        eleccionCPU = random.randint(0,6)
       if hueco(tablero,eleccionCPU)== True:
         fila_disponible = hueco_disponible(tablero,eleccionCPU)
         meter_fitcha(tablero,fila_disponible,eleccionCPU,"🔴")
@@ -161,8 +161,6 @@ def iniciovsCPU(tablero):
 #############################################################
 def Historial(historial):
     return print(historial)
-
-
 
 
 
