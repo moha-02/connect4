@@ -1,7 +1,8 @@
 import datetime
-######## INTERRUPTORES DEL LAS DIFERENTES OPCIONES ########
-game_over2 = True #### interruptor para 1vs1
+import random 
 
+game_over2 = True #### interruptor para 1vs1
+gameOver = True
 ################### IMPRIMIR TABLERO ##############################
 def imprimir_tablero(tablero):
   print("\n     0    1    2    3    4    5    6  ", end="")
@@ -60,6 +61,10 @@ def ganador(fitcha):
         if tablero[x][y] == fitcha and tablero[x+1][y+1] == fitcha and tablero[x+2][y+2] == fitcha and tablero[x+3][y+3] == fitcha:
           return True
 
+def vaciarTablero(tablero):
+    tablero = [["","","","","","",""], ["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""]] 
+    return tablero
+
 def inicio1vs1(tablero,historial):
 #########  INTERCAMBIO DE TURNOS (inicializar turno en 0)##############
   turn = 0
@@ -79,6 +84,7 @@ def inicio1vs1(tablero,historial):
         if ganador("🔵") == True:
           print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
           game_over2 == True
+          vaciarTablero(tablero)
           nombre = input("Introduce tu nombre para que sea registrado: ")
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
@@ -97,6 +103,7 @@ def inicio1vs1(tablero,historial):
         if ganador("🔴") == True:
           print("EL jugador 🔴 es el ganador, FELICIDADES!!!!!")
           game_over2 == True
+          vaciarTablero(tablero)
           nombre = input("Introduce tu nombre para que sea registrado: ")
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
@@ -106,17 +113,52 @@ def inicio1vs1(tablero,historial):
     turn +=1  ##### Permite intercalar turnos ""
     turn = turn%2 #### permite interclar turnos ""
 
+def iniciovsCPU(tablero):
+  turno = 0 #Controlador de turnos
+  gameOver = True #Controlador del bucle While
+  imprimir_tablero(tablero)
+  while not gameOver:
+    if turno == 0:
+      col = int(input("Introduzca la columna que desea jugador 1 : "))
+      while hueco(tablero,col) == False:
+        col = int(input("Columna llena escoja otra : "))
+      if hueco(tablero,col) == True:
+        fila_disp = hueco_disponible(tablero,col)
+        meter_fitcha(tablero,fila_disp,col,"🔵")
+        tablero = tablero[::-1] ####### el tablero se imprime al reves debido al comportamiento de la matriz /// con este metodo se imprime como toca #######
+        print(imprimir_tablero(tablero))
+        if ganador("🔵") == True:
+          print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
+          game_over2 == True
+          vaciarTablero(tablero)
+          nombre = input("Introduce tu nombre para que sea registrado: ")
+          fechaActual = datetime.datetime.now()
+          fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
+          historial.update({"Ganador": nombre,"fichaUtilizada": "🔵", "Fecha": fechaFormateada })
+          return historial
+        tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
+    else:
+      print("CPU pensando..................")
+      eleccionCPU = random.choice(0,1,2,3,4,5,6)
+      while hueco(tablero,eleccionCPU)== True:
+        eleccionCPU = random.choice(0,1,2,3,4,5,6)
+      if hueco(tablero,eleccionCPU)== True:
+        fila_disponible = hueco_disponible(tablero,eleccionCPU)
+        meter_fitcha(tablero,fila_disponible,eleccionCPU,"🔴")
+        tablero = tablero[::-1]
+        print(imprimir_tablero(tablero))
+        if ganador("🔴") == True:
+          print("Ha ganado la CPU,:P")
+          gameOver == True
+          vaciarTablero(tablero)
+          return historial
+        tablero = tablero [::-1]
+    turno +=1  ##### Permite intercalar turnos ""
+    turno = turno%2 #### permite interclar turnos ""
+
+
+
 #############################################################
-
-def vaciarTablero(tablero):
-    for x in range(6):
-      for y in range(7):
-        if(tablero[x][y] == "🔵"):
-          tablero[x][y].pop("🔵")
-        elif(tablero[x][y] == "🔴"):
-          tablero[x][y].pop("🔴")
-    return tablero
-
 def Historial(historial):
     return print(historial)
 
@@ -146,16 +188,17 @@ Opcion =int(input("Elige una opción: "))
 
 while controlMenu == False:
     if Opcion == 1:
+        gameOver= False
+        iniciovsCPU(tablero)
         Menu()
         Opcion =int(input("Que desea hacer ahora: "))
     elif Opcion == 2:
         game_over2 = False
         inicio1vs1(tablero,historial)
-        vaciarTablero(tablero)
         Menu()
         Opcion =int(input("Que desea hacer ahora: "))
     elif Opcion == 3:
-        print(historial)
+        Historial(historial)
         Menu()
         Opcion =int(input("Que desea hacer ahora: "))
     elif Opcion == 4:
