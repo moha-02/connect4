@@ -85,7 +85,7 @@ def inicio1vs1(tablero,historial):
         fila_disp = hueco_disponible(tablero,col)
         meter_fitcha(tablero,fila_disp,col,"🔵")
         tablero = tablero[::-1] ####### el tablero se imprime al reves debido al comportamiento de la matriz /// con este metodo se imprime como toca #######
-        print(imprimir_tablero(tablero))
+        imprimir_tablero(tablero)
         if ganador("🔵") == True:
           print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
           game_over2 == True
@@ -104,7 +104,7 @@ def inicio1vs1(tablero,historial):
         fila_disp = hueco_disponible(tablero,col)
         meter_fitcha(tablero,fila_disp,col,"🔴")
         tablero = tablero[::-1]
-        print(imprimir_tablero(tablero))
+        imprimir_tablero(tablero)
         if ganador("🔴") == True:
           print("EL jugador 🔴 es el ganador, FELICIDADES!!!!!")
           game_over2 == True
@@ -131,7 +131,7 @@ def iniciovsCPU(tablero):
         fila_disp = hueco_disponible(tablero,col)
         meter_fitcha(tablero,fila_disp,col,"🔵")
         tablero = tablero[::-1] ####### el tablero se imprime al reves debido al comportamiento de la matriz /// con este metodo se imprime como toca #######
-        print(imprimir_tablero(tablero))
+        imprimir_tablero(tablero)
         if ganador("🔵") == True:
           print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
           game_over2 == True
@@ -151,7 +151,7 @@ def iniciovsCPU(tablero):
         fila_disponible = hueco_disponible(tablero,eleccionCPU)
         meter_fitcha(tablero,fila_disponible,eleccionCPU,"🔴")
         tablero = tablero[::-1]
-        print(imprimir_tablero(tablero))
+        imprimir_tablero(tablero)
         if ganador("🔴") == True:
           print("Ha ganado la CPU,:P")
           gameOver == True
