@@ -1,5 +1,6 @@
 import datetime
-import random 
+import random
+import time
 
 game_over2 = True #### interruptor para 1 vs 1
 gameOver = True #### interruptor para 1 vs CPU
@@ -374,6 +375,7 @@ def iniciovsCPU(tablero):
         tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
     else:
       print("CPU pensando..................")
+      time.sleep(3)
       eleccionCPU = random.randint(0,6)
       while hueco(tablero,eleccionCPU)== False:
         eleccionCPU = random.randint(0,6)
@@ -432,6 +434,7 @@ def inicioVsCPUmodoDificil(tablero):
         tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
     else:
       print("CPU pensando..................")
+      time.sleep(3)
       if movimientoGanadorCPU("🔴") == True:
           winCPU("🔴")
           tablero = tablero[::-1]
@@ -548,5 +551,4 @@ while controlMenu == False:
         controlMenu = True
     elif Opcion !=1 or Opcion !=2 or Opcion !=3 or Opcion !=4 :
         Menu()
-        Opcion = int(input="Valor incorrecto. Vuelva a introducir un valor: ")
-   
+        Opcion = int(input="Valor incorrecto.Vuelva a introducir un valor: ")
