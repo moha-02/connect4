@@ -1,8 +1,8 @@
 import datetime
 import random 
 
-game_over2 = True #### interruptor para 1vs1
-gameOver = True
+game_over2 = True #### interruptor para 1 vs 1
+gameOver = True ##### interruptor para 1vs CPU
 ################### IMPRIMIR TABLERO ##############################
 def imprimir_tablero(tablero):
   print("\n     0    1    2    3    4    5    6  ", end="")
@@ -180,10 +180,13 @@ def evitarDerrotaCPU(ficha,FICHA):
           tablero[x+3][y+3]==FICHA
           return tablero
 
-
-
-def vaciarTablero(tablero):
-  tablero = [["","","","","","",""], ["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""]] 
+def vaciarTablero(tablero,filas,columnas):
+  for i in range(filas):
+    for j in range(columnas):
+      if tablero[i][j] == "🔵":
+        tablero[i][j] = ""
+      elif tablero[i][j] == "🔴":
+        tablero[i][j] = ""
   return tablero
 
 def inicio1vs1(tablero,historial):
@@ -205,7 +208,7 @@ def inicio1vs1(tablero,historial):
         if ganador("🔵") == True:
           print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
           game_over2 == True
-          vaciarTablero(tablero)
+          tablero = vaciarTablero(tablero,filas,columnas)
           nombre = input("Introduce tu nombre para que sea registrado: ")
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
@@ -224,7 +227,7 @@ def inicio1vs1(tablero,historial):
         if ganador("🔴") == True:
           print("EL jugador 🔴 es el ganador, FELICIDADES!!!!!")
           game_over2 == True
-          vaciarTablero(tablero)
+          tablero = vaciarTablero(tablero,filas,columnas)
           nombre = input("Introduce tu nombre para que sea registrado: ")
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
@@ -251,7 +254,7 @@ def iniciovsCPU(tablero):
         if ganador("🔵") == True:
           print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
           game_over2 == True
-          vaciarTablero(tablero)
+          tablero = vaciarTablero(tablero,filas,columnas)
           nombre = input("Introduce tu nombre para que sea registrado: ")
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
@@ -271,7 +274,7 @@ def iniciovsCPU(tablero):
         if ganador("🔴") == True:
           print("Ha ganado la CPU,:P")
           gameOver == True
-          vaciarTablero(tablero)
+          tablero = vaciarTablero(tablero,filas,columnas)
           return historial
         tablero = tablero [::-1]
     turno +=1  ##### Permite intercalar turnos ""
