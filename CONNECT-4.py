@@ -275,6 +275,16 @@ def empate(tablero):
         return False
   return True      
 
+################## TRATACION DE ERRORES #########################
+def treat_error(prompt):
+   while True:
+    try:
+        prompt = int(input("Introduce numero: "))
+        return prompt
+    except ValueError:
+        print("Valor introduzdido incorrecto, vuelve a probar")
+
+auxiliar = "" #### variable auxiliar para la funcion de tratacion de errores de entrada por teclado
 
 ######################## Modo 1 contra 1 ###################################
 
@@ -286,11 +296,17 @@ def inicio1vs1(tablero,historial):
 
   while not game_over2:
     if turn == 0:
-      col = int(input("Introduzca la columna que desea jugador 1 : "))
+      print("Introduzca la columna que desea jugador 1  ")
+      col = treat_error(auxiliar)
       while (col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6):
-        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))
+        print("Columna inexistente.Vuelva a introducir una columna jugador 1 ")
+        col = treat_error(auxiliar)
       while hueco(tablero,col) == False:
-        col = int(input("Columna llena escoja otra : "))
+        print("Columna llena escoja otra  ")
+        col = treat_error(auxiliar)
+        while (col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6):
+          print("Columna inexistente.Vuelva a introducir una columna jugador 1 ")
+          col = treat_error(auxiliar)
       if hueco(tablero,col) == True:
         fila_disp = hueco_disponible(tablero,col)
         meter_fitcha(tablero,fila_disp,col,"🔵")
@@ -312,11 +328,17 @@ def inicio1vs1(tablero,historial):
           return historial
         tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
     else:
-      col = int(input("Introduzca la columna que desea jugador 2 : "))
+      print("Introduzca la columna que desea jugador 2 : ")
+      col = treat_error(auxiliar)
       while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
-        col = int(input("Columna inexistente. Vuelva a introducir una columna jugador 2: "))
+        print("Columna inexistente. Vuelva a introducir una columna jugador 2 ")
+        col = treat_error(auxiliar)
       while hueco(tablero,col) == False:
-        col = int(input("Columna llena escoja otra : "))
+        print("Columna llena escoja otra  ")
+        col = treat_error(auxiliar)
+        while (col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6):
+          print("Columna inexistente.Vuelva a introducir una columna jugador 2 ")
+          col = treat_error(auxiliar)
       if hueco(tablero,col) == True:
         fila_disp = hueco_disponible(tablero,col)
         meter_fitcha(tablero,fila_disp,col,"🔴")
@@ -348,11 +370,17 @@ def iniciovsCPU(tablero):
   imprimir_tablero(tablero)
   while not gameOver:
     if turno == 0:
-      col = int(input("Introduzca la columna que desea jugador 1 : "))
+      print("Introduzca la columna que desea jugador 1 ")
+      col = treat_error(auxiliar)
       while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
-        col = int(input("Columna inexistente. Vuelva a introducir una columna jugador 1: "))
+        print("Columna inexistente. Vuelva a introducir una columna jugador 1 ")
+        col = treat_error(auxiliar)
       while hueco(tablero,col) == False:
-        col = int(input("Columna llena escoja otra : "))
+        print("Columna llena escoja otra : ")
+        col = treat_error(auxiliar)
+        while (col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6):
+          print("Columna inexistente.Vuelva a introducir una columna jugador 1 ")
+          col = treat_error(auxiliar)
       if hueco(tablero,col) == True:
         fila_disp = hueco_disponible(tablero,col)
         meter_fitcha(tablero,fila_disp,col,"🔵")
@@ -407,11 +435,17 @@ def inicioVsCPUmodoDificil(tablero):
   imprimir_tablero(tablero)
   while not gameOver3:
     if turno == 0:
-      col = int(input("Introduzca la columna que desea jugador 1 : "))
+      print("Introduzca la columna que desea jugador 1  ")
+      col = treat_error(auxiliar)
       while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
-        col = int(input("Columna inexistente. Vuelva a introducir una columna jugador 1: "))
+        print("Columna inexistente. Vuelva a introducir una columna jugador 1: ")
+        col = treat_error(auxiliar)
       while hueco(tablero,col) == False:
-        col = int(input("Columna llena escoja otra : "))
+        print("Columna llena escoja otra  ")
+        col = treat_error(auxiliar)
+        while (col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6):
+          print("Columna inexistente.Vuelva a introducir una columna jugador 1 ")
+          col = treat_error(auxiliar)
       if hueco(tablero,col) == True:
         fila_disp = hueco_disponible(tablero,col)
         meter_fitcha(tablero,fila_disp,col,"🔵")
