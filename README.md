@@ -66,7 +66,7 @@ gameOver = True #### interruptor para 1 vs CPU
 ####### interruptor + declaracion de historial #######
 controlMenu = False
 historial = {}
-################## TABLERO (matriz: array 2D, 6 filas x 7 columnas) ######################################3
+################## TABLERO (matriz: array 2D, 6 filas x 7 columnas) ######################################
 tablero = [["","","","","","",""], ["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""]]
 filas = 6
 columnas = 7
