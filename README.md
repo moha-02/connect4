@@ -54,7 +54,12 @@ Hay 2 formas de finalizar el juego:
 # Documento Diseño Inicial
 ## Inicio
 Funcion que te imprima un Menu,donde se visualizara las distintas opciones a elegir.
+
 Habra un bucle en el cual hasta que el usuario no elija la opción correcta no sale.
+
+EL ususario tendra 4 opciones a elegir:
+- Juego contra la CPU
+- jUEGO
 
 
 
