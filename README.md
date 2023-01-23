@@ -4,7 +4,7 @@ Primer proyecto en Python del  modulo DAW. Autores : Mohammed y Fabian
 ## Objetivos
 Lo primordial en este proyecto en conjunto es aplicar todos los conocimientos adquiridos,durante este tiempo,sobre el lenguaje de programación Python  y poder así realizar varias funciones con el objetivo de crear un juego.
 
-El juego que hemos elegido es el clasico  ***4 en raya*** ,donde el usuario tendra 2 modos de juego:
+El juego que hemos elegido es el clasico  *** 4 en raya *** ,donde el usuario tendra 2 modos de juego:
 - Contra la IA
 - Contra otro jugador
 
@@ -28,7 +28,7 @@ En esta ultima fase ponemos a prueba el juego y verificar las distintas funciona
 
 ## Documento Definición Del juego
 
-A continuación,explicaremos como se juega al 4 en raya.Como queremos hacer 2 modos,solo desarollaremos una de ellos,ya que tienen casi las mismas funcionalidades.
+A continuación,explicaremos como se juega al 4 en raya. Como queremos hacer 2 modos, solo desarollaremos un0 de ellos, ya que tienen casi las mismas funcionalidades.
 
 **4 EN RAYA (1 VS 1)**
 - **Antes de la partida**
@@ -47,10 +47,10 @@ A continuación,explicaremos como se juega al 4 en raya.Como queremos hacer 2 mo
 
 Hay 2 formas de finalizar el juego:
 ~~~
-1. El primer jugador en ubicar 4 fichas del mismo color seguidas en horizontal,vertical u oblicuo.
+1. El primer jugador en ubicar 4 fichas del mismo color seguidas en horizontal,vertical o diagonal positiva/negativa.
 2. Si el tablero termina con todas las casillas ocupadas y no hay 4 fichas del mismo color seguidas,la partida termina en empate.
 ~~~
-
+# CODIGO
 
 DIVISION DEL PROYECTO
 TABLERO: Mohammed
