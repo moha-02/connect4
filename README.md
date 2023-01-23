@@ -416,7 +416,7 @@ while controlMenu == False:
 # Documento Test de Pruebas y Errores
 ### Fallo:
 ~~~
-El tablero se rrelena de arrib a bajo puesto que es una matriz.
+El tablero se rellena de arrib a bajo puesto que es una matriz.
 ~~~
 ### Solución:
 ~~~
