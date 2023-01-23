@@ -286,8 +286,8 @@ def inicio1vs1(tablero,historial):
   while not game_over2:
     if turn == 0:
       col = int(input("Introduzca la columna que desea jugador 1 : "))
-      while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
-        col = int(input("Columna inexistente. Vuelva a introducir una columna jugador 1: "))
+      while (col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6):
+        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))
       while hueco(tablero,col) == False:
         col = int(input("Columna llena escoja otra : "))
       if hueco(tablero,col) == True:
