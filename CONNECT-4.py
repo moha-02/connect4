@@ -71,7 +71,22 @@ def movimientoGanadorCPU(ficha):
     ######## COMPROBAR ESPACIOS HORIZONTALES ##########
   for y in range(columnas - 3):
     for x in range(filas):
-       if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == ficha and tablero[x][y+3]=="") and (tablero[x-1][y-3]!=""):
+       if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == ficha and tablero[x][y+3]=="") and (tablero[x-1][y+3]!=""):
+        return True
+
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if (tablero[x][y+3] == ficha and tablero[x][y+2] == ficha and tablero[x][y+1] == ficha and tablero[x][y]=="") and (tablero[x-1][y] !=""):
+          return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == "" and tablero[x][y+2] == ficha and tablero[x][y+3]== ficha) and (tablero[x-1][y+1] !=""):
+        return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == "" and tablero[x][y+3]== ficha) and (tablero[x-1][y+2] !=""):
         return True
 
   #### COMPROBAR ESPACIOS VERTICALES ###############
@@ -104,6 +119,24 @@ def winCPU(FICHA):
         tablero[x][y+3] = FICHA
         return tablero
 
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[x][y+3] == FICHA and tablero[x][y+2] == FICHA and tablero[x][y+1] == FICHA and tablero[x][y]=="":
+          tablero[x][y] = FICHA
+          return tablero
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[x][y] == FICHA and tablero[x][y+1] == "" and tablero[x][y+2] == FICHA and tablero[x][y+3]== FICHA:
+        tablero[x][y+1] = FICHA
+        return tablero
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[x][y] == FICHA and tablero[x][y+1] == FICHA and tablero[x][y+2] == "" and tablero[x][y+3]== FICHA:
+        tablero[x][y+2] = FICHA
+        return tablero
+
   #### COMPROBAR ESPACIOS VERTICALES ###############
   for y in range(columnas):
     for x in range(filas - 3):
@@ -133,7 +166,22 @@ def moviminetoGanadorUsuario(ficha):
     ######## COMPROBAR ESPACIOS HORIZONTALES ##########
   for y in range(columnas - 3):
     for x in range(filas):
-      if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == ficha and tablero[x][y+3]=="") and (tablero[x-1][y-3] !=""):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == ficha and tablero[x][y+3]=="") and (tablero[x-1][y+3] !=""):
+        return True
+  
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if (tablero[x][y+3] == ficha and tablero[x][y+2] == ficha and tablero[x][y+1] == ficha and tablero[x][y]=="") and (tablero[x-1][y] !=""):
+          return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == "" and tablero[x][y+2] == ficha and tablero[x][y+3]== ficha) and (tablero[x-1][y+1] !=""):
+        return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == "" and tablero[x][y+3]== ficha) and (tablero[x-1][y+2] !=""):
         return True
 
   #### COMPROBAR ESPACIOS VERTICALES ###############
@@ -164,6 +212,24 @@ def evitarDerrotaCPU(ficha,FICHA):
     for x in range(filas):
        if tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == ficha and tablero[x][y+3]=="":
         tablero[x][y+3] = FICHA
+        return tablero
+
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[x][y+3] == ficha and tablero[x][y+2] == ficha and tablero[x][y+1] == ficha and tablero[x][y]=="":
+          tablero[x][y] = FICHA
+          return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[x][y] == ficha and tablero[x][y+1] == "" and tablero[x][y+2] == ficha and tablero[x][y+3]== ficha:
+        tablero[x][y+1] = FICHA
+        return tablero
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == "" and tablero[x][y+3]== ficha:
+        tablero[x][y+2] = FICHA
         return tablero
 
   #### COMPROBAR ESPACIOS VERTICALES ###############
