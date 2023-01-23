@@ -1,8 +1,9 @@
 import datetime
 import random 
 
-game_over2 = True #### interruptor para 1 vs 1
-gameOver = True ##### interruptor para 1vs CPU
+game_over2 = True #### interruptor para 1vs1
+gameOver = True
+
 ################### IMPRIMIR TABLERO ##############################
 def imprimir_tablero(tablero):
   print("\n     0    1    2    3    4    5    6  ", end="")
@@ -37,6 +38,7 @@ def meter_fitcha(tablero, fila_disp, col, fitcha):
 
 ############ COMPROBAR GANADOR ######################
 def ganador(fitcha):
+
   ######## COMPROBAR ESPACIOS HORIZONTALES ##########
   for y in range(columnas - 3):
     for x in range(filas):
@@ -61,6 +63,9 @@ def ganador(fitcha):
         if tablero[x][y] == fitcha and tablero[x+1][y+1] == fitcha and tablero[x+2][y+2] == fitcha and tablero[x+3][y+3] == fitcha:
           return True
 
+
+
+###################    Funcion que me determina que proximo movimineto  que tiene la CPU para ganar  ################################
 
 def movimientoGanadorCPU(ficha):
     ######## COMPROBAR ESPACIOS HORIZONTALES ##########
@@ -88,6 +93,8 @@ def movimientoGanadorCPU(ficha):
           return True
 
 
+
+#################     Funcion que mete la ficha en el tablero para que la CPU gane ###############################
 
 def winCPU(FICHA):
     ######## COMPROBAR ESPACIOS HORIZONTALES ##########
@@ -120,7 +127,7 @@ def winCPU(FICHA):
 
 
 
-###################    Funcion que me determina que proximo movimineto tiene el usuario para ganar  ################################
+###################    Funcion que me determina que proximo movimineto que tiene el usuario para ganar  ################################
 
 def moviminetoGanadorUsuario(ficha):
     ######## COMPROBAR ESPACIOS HORIZONTALES ##########
@@ -202,6 +209,8 @@ def empate(tablero):
   return True      
 
 
+######################## Modo 1 contra 1 ###################################
+
 def inicio1vs1(tablero,historial):
 #########  INTERCAMBIO DE TURNOS (inicializar turno en 0)##############
   turn = 0
@@ -211,6 +220,8 @@ def inicio1vs1(tablero,historial):
   while not game_over2:
     if turn == 0:
       col = int(input("Introduzca la columna que desea jugador 1 : "))
+      while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
+        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))
       while hueco(tablero,col) == False:
         col = int(input("Columna llena escoja otra : "))
       if hueco(tablero,col) == True:
@@ -235,6 +246,8 @@ def inicio1vs1(tablero,historial):
         tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
     else:
       col = int(input("Introduzca la columna que desea jugador 2 : "))
+      while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
+        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 2: "))
       while hueco(tablero,col) == False:
         col = int(input("Columna llena escoja otra : "))
       if hueco(tablero,col) == True:
@@ -261,12 +274,16 @@ def inicio1vs1(tablero,historial):
     turn = turn%2 #### permite interclar turnos ""
 
 
+########################## Modo facil CPU ####################################
+
 def iniciovsCPU(tablero):
   turno = 0 #Controlador de turnos
   imprimir_tablero(tablero)
   while not gameOver:
     if turno == 0:
       col = int(input("Introduzca la columna que desea jugador 1 : "))
+      while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
+        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))
       while hueco(tablero,col) == False:
         col = int(input("Columna llena escoja otra : "))
       if hueco(tablero,col) == True:
@@ -282,6 +299,11 @@ def iniciovsCPU(tablero):
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
           historial.update({"Ganador": nombre,"fichaUtilizada": "🔵", "Fecha": fechaFormateada })
+          return historial
+        elif empate(tablero) == True:
+          print("Ha habido un empate")
+          game_over2== True
+          vaciarTablero(tablero,filas,columnas)
           return historial
         tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
     else:
@@ -299,9 +321,17 @@ def iniciovsCPU(tablero):
           gameOver == True
           vaciarTablero(tablero,filas,columnas)
           return historial
-        tablero = tablero [::-1]
+        elif empate(tablero) == True:
+          print("Ha habido un empate")
+          game_over2== True
+          vaciarTablero(tablero,filas,columnas)
+          return historial
+        tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
     turno +=1  ##### Permite intercalar turnos ""
     turno = turno%2 #### permite interclar turnos ""
+
+
+########################## Modo dificil CPU #######################################
 
 def inicioVsCPUmodoDificil(tablero):
   turno = 0 #Controlador de turnos
@@ -310,6 +340,8 @@ def inicioVsCPUmodoDificil(tablero):
   while not gameOver3:
     if turno == 0:
       col = int(input("Introduzca la columna que desea jugador 1 : "))
+      while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
+        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))
       while hueco(tablero,col) == False:
         col = int(input("Columna llena escoja otra : "))
       if hueco(tablero,col) == True:
@@ -325,6 +357,11 @@ def inicioVsCPUmodoDificil(tablero):
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
           historial.update({"Ganador": nombre,"fichaUtilizada": "🔵", "Fecha": fechaFormateada })
+          return historial
+        elif empate(tablero) == True:
+          print("Ha habido un empate")
+          game_over2== True
+          vaciarTablero(tablero,filas,columnas)
           return historial
         tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
     else:
@@ -363,7 +400,12 @@ def inicioVsCPUmodoDificil(tablero):
             gameOver3 == True
             vaciarTablero(tablero,filas,columnas)
             return historial
-          tablero = tablero [::-1]
+        elif empate(tablero) == True:
+          print("Ha habido un empate")
+          game_over2== True
+          vaciarTablero(tablero,filas,columnas)
+          return historial
+        tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
     turno +=1  ##### Permite intercalar turnos ""
     turno = turno%2 #### permite interclar turnos ""
       
@@ -377,7 +419,7 @@ def Historial(historial):
 
 
 
-########################## MENU DEL JUEGO (activa los interruptores) #####################################
+########################## MENUS DEL JUEGO (activa los interruptores) #####################################
 def Menu():
     print("******************************************")
     print("*              CONNECT-4                 *")
@@ -398,6 +440,7 @@ def MenuCPU():
     print("*            2. MOdo Dificil             *")
     print("*                                        *")
     print("******************************************")
+
 
 controlMenu = False
 historial = {}
