@@ -51,6 +51,20 @@ Hay 2 formas de finalizar el juego:
 2. Si el tablero termina con todas las casillas ocupadas y no hay 4 fichas del mismo color seguidas,la partida termina en empate.
 ~~~
 # CODIGO
+## División
+El codigo se divide en diferentes funciones las cuales trabajan conjuntamente. Estas se ejecutan conforme la opcion seleccionada en el menu principal. También cuenta con variables a las cuales acceden las diferentes funciones.
+### Partes:
+
+1.  Variables generales. Estas son basicamente los interruptores de los algoritmos y los elementos que necesitan ser accedidos por diferentes funciones.
+
+
+
+
+
+
+
+
+
 
 DIVISION DEL PROYECTO
 TABLERO: Mohammed
