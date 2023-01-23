@@ -287,14 +287,35 @@ while controlMenu == False:
    
 ~~~
 
+# ERRORES
+### Fallo:
+~~~
+El tablero se rrelena de arrib a bajo puesto que es una matriz.
+~~~
+### Solución:
+~~~
+Invertir la matriz a la hora de imprimir, posteriormente revertirlo al estado original:
 
+tablero = tablero[::-1] ####### el tablero se imprime al reves debido al comportamiento de la matriz /// con este       metodo se imprime como toca #######
+tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
+~~~
 
+### Fallo:
+~~~
+El tablero no borra la partida anterior para poder jugar la siguiente partida
+~~~
+### Solución:
+~~~
+Crear una funcion que vacia la matriz recorriendo esta y eliminando las fichas en las posiciones que se encuentran:
 
+#### Funcion para resetear el tablero
 
-
-DIVISION DEL PROYECTO
-TABLERO: Mohammed
-MENU: Fabian
-CONTRA CPU:Mohammed
-1 VS 1: Fabian
-Fichas/colocado : Mohammed  
+def vaciarTablero(tablero,filas,columnas):
+  for i in range(filas):
+    for j in range(columnas):
+      if tablero[i][j] == "🔵":
+        tablero[i][j] = ""
+      elif tablero[i][j] == "🔴":
+        tablero[i][j] = ""
+  return tablero
+~~~
