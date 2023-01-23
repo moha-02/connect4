@@ -50,7 +50,18 @@ Hay 2 formas de finalizar el juego:
 1. El primer jugador en ubicar 4 fichas del mismo color seguidas en horizontal,vertical o diagonal positiva/negativa.
 2. Si el tablero termina con todas las casillas ocupadas y no hay 4 fichas del mismo color seguidas,la partida termina en empate.
 ~~~
-# CODIGO
+
+# Documento Diseño Inicial
+## Inicio
+Funcion que te imprima un Menu,donde se visualizara las distintas opciones a elegir.
+Habra un bucle en el cual hasta que el usuario no elija la opción correcta no sale.
+
+
+
+
+
+
+# Documento Codificación y Desarollo del Juego
 ## División
 El codigo se divide en diferentes funciones las cuales trabajan conjuntamente. Estas se ejecutan conforme la opcion seleccionada en el menu principal. También cuenta con variables a las cuales acceden las diferentes funciones.
 ### Partes:
@@ -287,7 +298,7 @@ while controlMenu == False:
    
 ~~~
 
-# ERRORES
+# Documento Test de Pruebas y Errores
 ### Fallo:
 ~~~
 El tablero se rrelena de arrib a bajo puesto que es una matriz.
