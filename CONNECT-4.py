@@ -1,8 +1,8 @@
 import datetime
 import random 
 
-game_over2 = True #### interruptor para 1vs1
-gameOver = True
+game_over2 = True #### interruptor para 1 vs 1
+gameOver = True #### interruptor para 1 vs CPU
 
 ################### IMPRIMIR TABLERO ##############################
 def imprimir_tablero(tablero):
@@ -255,7 +255,7 @@ def evitarDerrotaCPU(ficha,FICHA):
 
 
 
-#### Funcion para resetear el tablero
+#### Funcion para resetear el tablero ##########
 
 def vaciarTablero(tablero,filas,columnas):
   for i in range(filas):
@@ -287,7 +287,7 @@ def inicio1vs1(tablero,historial):
     if turn == 0:
       col = int(input("Introduzca la columna que desea jugador 1 : "))
       while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
-        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))
+        col = int(input("Columna inexistente. Vuelva a introducir una columna jugador 1: "))
       while hueco(tablero,col) == False:
         col = int(input("Columna llena escoja otra : "))
       if hueco(tablero,col) == True:
@@ -302,7 +302,7 @@ def inicio1vs1(tablero,historial):
           nombre = input("Introduce tu nombre para que sea registrado: ")
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
-          historial.update({"Ganador": nombre,"fichaUtilizada": "🔵", "Fecha": fechaFormateada })
+          historial.update({"Ganador": nombre,"ficha utilizada": "🔵", "Fecha": fechaFormateada })
           return historial
         elif empate(tablero) == True:
           print("Ha habido un empate")
@@ -313,7 +313,7 @@ def inicio1vs1(tablero,historial):
     else:
       col = int(input("Introduzca la columna que desea jugador 2 : "))
       while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
-        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 2: "))
+        col = int(input("Columna inexistente. Vuelva a introducir una columna jugador 2: "))
       while hueco(tablero,col) == False:
         col = int(input("Columna llena escoja otra : "))
       if hueco(tablero,col) == True:
@@ -328,10 +328,10 @@ def inicio1vs1(tablero,historial):
           nombre = input("Introduce tu nombre para que sea registrado: ")
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
-          historial.update({"Ganador": nombre,"fichaUtilizada": "🔴", "Fecha": fechaFormateada })
+          historial.update({"Ganador": nombre,"ficha utilizada": "🔴", "Fecha": fechaFormateada })
           return historial
         elif empate(tablero) == True:
-          print("Ha habido un empate")
+          print("Ha habido un empate, Gracias por jugar!!!")
           game_over2== True
           vaciarTablero(tablero,filas,columnas)
           return historial
@@ -349,7 +349,7 @@ def iniciovsCPU(tablero):
     if turno == 0:
       col = int(input("Introduzca la columna que desea jugador 1 : "))
       while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
-        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))
+        col = int(input("Columna inexistente. Vuelva a introducir una columna jugador 1: "))
       while hueco(tablero,col) == False:
         col = int(input("Columna llena escoja otra : "))
       if hueco(tablero,col) == True:
@@ -364,10 +364,10 @@ def iniciovsCPU(tablero):
           nombre = input("Introduce tu nombre para que sea registrado: ")
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
-          historial.update({"Ganador": nombre,"fichaUtilizada": "🔵", "Fecha": fechaFormateada })
+          historial.update({"Ganador": nombre,"ficha utilizada": "🔵", "Fecha": fechaFormateada })
           return historial
         elif empate(tablero) == True:
-          print("Ha habido un empate")
+          print("Ha habido un empate, Gracias por jugar!!!")
           game_over2== True
           vaciarTablero(tablero,filas,columnas)
           return historial
@@ -388,7 +388,7 @@ def iniciovsCPU(tablero):
           vaciarTablero(tablero,filas,columnas)
           return historial
         elif empate(tablero) == True:
-          print("Ha habido un empate")
+          print("Ha habido un empate, Gracias por jugar!!!")
           game_over2== True
           vaciarTablero(tablero,filas,columnas)
           return historial
@@ -407,7 +407,7 @@ def inicioVsCPUmodoDificil(tablero):
     if turno == 0:
       col = int(input("Introduzca la columna que desea jugador 1 : "))
       while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
-        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))
+        col = int(input("Columna inexistente. Vuelva a introducir una columna jugador 1: "))
       while hueco(tablero,col) == False:
         col = int(input("Columna llena escoja otra : "))
       if hueco(tablero,col) == True:
@@ -422,10 +422,10 @@ def inicioVsCPUmodoDificil(tablero):
           nombre = input("Introduce tu nombre para que sea registrado: ")
           fechaActual = datetime.datetime.now()
           fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
-          historial.update({"Ganador": nombre,"fichaUtilizada": "🔵", "Fecha": fechaFormateada })
+          historial.update({"Ganador": nombre,"ficha utilizada": "🔵", "Fecha": fechaFormateada })
           return historial
         elif empate(tablero) == True:
-          print("Ha habido un empate")
+          print("Ha habido un empate, Gracias por jugar!!!")
           game_over2== True
           vaciarTablero(tablero,filas,columnas)
           return historial
@@ -467,7 +467,7 @@ def inicioVsCPUmodoDificil(tablero):
             vaciarTablero(tablero,filas,columnas)
             return historial
         elif empate(tablero) == True:
-          print("Ha habido un empate")
+          print("Ha habido un empate, Gracias por jugar!!!")
           game_over2== True
           vaciarTablero(tablero,filas,columnas)
           return historial
@@ -479,7 +479,7 @@ def inicioVsCPUmodoDificil(tablero):
         
 
 
-#############################################################
+######################### IMPRIME EKL RESULTADO DE LA PARTIDA PREVIA ####################################
 def Historial(historial):
     return print(historial)
 
@@ -507,7 +507,7 @@ def MenuCPU():
     print("*                                        *")
     print("******************************************")
 
-
+####### interruptor + declaracion de historial #######
 controlMenu = False
 historial = {}
 ################## TABLERO (matriz: array 2D, 6 filas x 7 columnas) ######################################3
@@ -544,9 +544,9 @@ while controlMenu == False:
         Menu()
         Opcion =int(input("Que desea hacer ahora: "))
     elif Opcion == 4:
-        print("Gracias por jugar,vuelva pronto.")
+        print("Gracias por jugar, vuelva pronto.")
         controlMenu = True
     elif Opcion !=1 or Opcion !=2 or Opcion !=3 or Opcion !=4 :
         Menu()
-        Opcion = int(input="Valor incorrecto.Vuelva a introducir un valor: ")
+        Opcion = int(input="Valor incorrecto. Vuelva a introducir un valor: ")
    
