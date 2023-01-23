@@ -53,17 +53,127 @@ Hay 2 formas de finalizar el juego:
 
 # Documento Diseño Inicial
 ## Inicio
-Funcion que te imprima un Menu,donde se visualizara las distintas opciones a elegir.
+Funcion que te imprime un Menu,donde se visualizara las distintas opciones a elegir.
 
 Habra un bucle en el cual hasta que el usuario no elija la opción correcta no sale.
 
 EL ususario tendra 4 opciones a elegir:
-- Juego contra la CPU
-- jUEGO
 
+1. Juego contra la CPU
+2. Juego 1 VS 1
+3. Historial
+4. Salida del Juego
 
+Dentro de cada **OPCIÓN**,el usuario encontrará una **FUNCIÓN** que ejecute lo deseado.
 
+#### Opción Juego contra CPU
 
+Se visualizara por pantalla,mediante una **función** , otro menu para que el usuario determine el nivel de dificultad.
+
+Dependeindo de la elección se ejecutará la correspondiente función para que de inicio al juego.
+
+- USUARIO ELIGE MODO FACIL CPU 
+~~~
+Se imprimirá por pantalla una función que te mostrará el tablero vacio.
+
+Se inicia un bucle,donde se va alternando los turnos hasta que ciertas condiciones se cumplan(Victoria o empate).
+
+Se te pedira que introduzcas un numero entre el 0 y el 6 para que introduzcas la ficha donde quieras
+
+Una vez introducida, se asegura que el numero esta entre los numeros establecidos
+
+Despues comprueba si la columna seleccionada hay un hueco disponible para meter la ficha mediante una funcion.
+
+Si hay un hueco introducirá la ficha,sino
+
+pedirá al usuario que elija otra columna.
+
+La introducción de la ficha se hace mediante una función que coge la posición del tablero y lo iguala a la ficha.
+
+Despues de que se introduzca la ficha,se comprueba con una función si el jugador que ha introducido ha ganado
+
+La función que determina si se gana tiene en cuenta si hay 4 fichas seguidas de forma horizontal,vertical o diagonal.
+
+Si ha ganado, te pedirá tu nombre y este se guardará en un diccionario para que quede guardado en el historial
+
+y tras finalizar esa operación,te devuelve al Menu pricipal con el historial.
+
+Si aun no ha ganado,se comprueba si hay un empate
+
+La función empate recorre cada casilla del tablero y si hay alguna casilla vacia devuelve un FALSE
+
+Si hay un empate ,  se visualiza por pantalla que ha habido un empate y te regresa al Menu de inicio
+
+y si no hay un empate,se cambia de turno.
+
+En el turno de la CPU,tiene la misma funcionalidad que el usuario salvo que la elección del numero lo obtiene de forma aleatoria dentro de los rangos establecidos.
+
+Para el random se utiliza su correspondiente librería.
+
+~~~
+
+- USUARIO ELIGE MODO DIFICIL CPU 
+
+~~~~
+Tiene las mismas características que el modo fácil ,salvo que que a la hora de introducir la fichas tiene distintas funciones 
+para (Ganar o evitar la victoria al usuario)
+Si no cumple con niguno de los requisitos que proponen las funciones ,mete la ficha de forma aleatoria.
+
+Todo lo demas funciona de la misma manera que el modo Fácil de la CPU.
+~~~~
+
+#### Opción Juego 1 vs 1
+
+~~~
+Se imprime mediante una función el tablero donde se va ha disputar la partida.
+
+Inicio de un bucle que durará hasta que haya una victoria o un empate.
+
+Se le pedirá al jugador que inicia un numero entre el 0 y el 6 para que introduzca la ficha donde quiera
+
+Una vez introducida, se asegura que el numero esta entre los numeros establecidos
+
+Despues comprueba si la columna seleccionada hay un hueco disponible para meter la ficha mediante una funcion.
+
+Si hay un hueco introducirá la ficha,sino
+
+pedirá al usuario que elija otra columna.
+
+La introducción de la ficha se hace mediante una función que coge la posición del tablero y lo iguala a la ficha.
+
+Despues de que se introduzca la ficha,se comprueba con una función si el jugador que ha introducido ha ganado
+
+La función que determina si se gana tiene en cuenta si hay 4 fichas seguidas de forma horizontal,vertical o diagonal.
+
+Si ha ganado, te pedirá tu nombre y este se guardará en un diccionario para que quede guardado en el historial
+
+y tras finalizar esa operación,te devuelve al Menu pricipal con el historial.
+
+Si aun no ha ganado,se comprueba si hay un empate
+
+La función empate recorre cada casilla del tablero y si hay alguna casilla vacia devuelve un FALSE
+
+Si hay un empate ,  se visualiza por pantalla que ha habido un empate y te regresa al Menu de inicio
+
+y si no hay un empate,se cambia de turno al otro juugador.
+
+~~~
+
+#### Opción Historial
+
+~~~
+Visualiza por pantalla todos los ganadores anteriores.
+
+Esta información se almacena en un diccionario.
+
+Tras visualizarse por pantalla,te devuelve al Menu principal.
+~~~
+
+#### Salir del juego
+
+~~~
+Finaliza el programa
+~~~
 
 
 # Documento Codificación y Desarollo del Juego
