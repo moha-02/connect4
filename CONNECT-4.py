@@ -450,7 +450,7 @@ def inicioVsCPUmodoDificil(tablero):
         fila_disp = hueco_disponible(tablero,col)
         meter_fitcha(tablero,fila_disp,col,"🔵")
         tablero = tablero[::-1] ####### el tablero se imprime al reves debido al comportamiento de la matriz /// con este metodo se imprime como toca #######
-        print(imprimir_tablero(tablero))
+        imprimir_tablero(tablero)
         if ganador("🔵") == True:
           print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
           game_over2 == True
@@ -472,7 +472,7 @@ def inicioVsCPUmodoDificil(tablero):
       if movimientoGanadorCPU("🔴") == True:
           winCPU("🔴")
           tablero = tablero[::-1]
-          print(imprimir_tablero(tablero))
+          imprimir_tablero(tablero)
           if ganador("🔴") == True:
             print("Ha ganado la CPU,:P")
             gameOver3 == True
@@ -482,7 +482,7 @@ def inicioVsCPUmodoDificil(tablero):
       elif moviminetoGanadorUsuario("🔵") == True:
         evitarDerrotaCPU("🔵","🔴")
         tablero = tablero[::-1]
-        print(imprimir_tablero(tablero))
+        imprimir_tablero(tablero)
         if ganador("🔴") == True:
             print("Ha ganado la CPU,:P")
             gameOver3 == True
@@ -497,7 +497,7 @@ def inicioVsCPUmodoDificil(tablero):
           fila_disponible = hueco_disponible(tablero,eleccionCPU)
           meter_fitcha(tablero,fila_disponible,eleccionCPU,"🔴")
           tablero = tablero[::-1]
-          print(imprimir_tablero(tablero))
+          imprimir_tablero(tablero)
           if ganador("🔴") == True:
             print("Ha ganado la CPU,:P")
             gameOver3 == True
@@ -540,7 +540,7 @@ def MenuCPU():
     print("*              Dificultad                *")
     print("*             *************              *")
     print("*            1. Modo Facil               *")
-    print("*            2. MOdo Dificil             *")
+    print("*            2. Modo Dificil             *")
     print("*                                        *")
     print("******************************************")
 
@@ -552,37 +552,43 @@ tablero = [["","","","","","",""], ["","","","","","",""],["","","","","","",""]
 filas = 6
 columnas = 7
 Menu()
-Opcion =int(input("Elige una opción: "))
-
+print("Elige una opción ")
+Opcion = treat_error(auxiliar)
 while controlMenu == False:
     if Opcion == 1:
         MenuCPU()
-        modoCPU = int (input("Elige la dificultadad: "))
+        print("Elige la dificultadad  ")
+        modoCPU = treat_error(auxiliar)
         while modoCPU !=1 and modoCPU !=2:
           MenuCPU()
-          modoCPU = int (input("Error vuelva a introducirlo. 1-MODO FACIL o 2-MODO DIFICIL: "))
+          print("Error vuelva a introducirlo. 1-MODO FACIL o 2-MODO DIFICIL ")
+          modoCPU = treat_error(auxiliar)
         if modoCPU == 1:
           gameOver= False
           iniciovsCPU(tablero)
           Menu()
-          Opcion =int(input("Que desea hacer ahora: "))
+          input("Que desea hacer ahora ")
+          Opcion = treat_error(auxiliar)
         else:
           gameOver3 = False
           inicioVsCPUmodoDificil(tablero)
           Menu()
-          Opcion =int(input("Que desea hacer ahora: "))
+          print("Que desea hacer ahora ")
+          Opcion = treat_error(auxiliar)
     elif Opcion == 2:
         game_over2 = False
         inicio1vs1(tablero,historial)
         Menu()
-        Opcion =int(input("Que desea hacer ahora: "))
+        Opcion = treat_error(auxiliar)
     elif Opcion == 3:
         Historial(historial)
         Menu()
-        Opcion =int(input("Que desea hacer ahora: "))
+        print("Que desea hacer ahora: ")
+        Opcion = treat_error(auxiliar)
     elif Opcion == 4:
         print("Gracias por jugar, vuelva pronto.")
         controlMenu = True
-    elif Opcion !=1 or Opcion !=2 or Opcion !=3 or Opcion !=4 :
+    else:
         Menu()
-        Opcion = int(input="Valor incorrecto.Vuelva a introducir un valor: ")
+        print("Valor incorrecto. Vuelva a introducir un valor ")
+        Opcion = treat_error(auxiliar)
