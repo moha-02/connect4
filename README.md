@@ -12,30 +12,30 @@ El juego que hemos elegido es el clasico  *** 4 en raya *** ,donde el usuario te
 La estrctura del proyecto se compone de 4 fases: Definición del juego,diseño inicial,desarollo y codificación del juego y test de pruebas y errores.
 
 ### Primera Fase: Definición del juego
-En esta fase buscaremos información sobre el juego(como se juega,modo de juegos,normas...) y en base a esa información podremos crear un pseudocódigo para tener un concepto inicial de la estructura así como las distinstans funciones que compondran el juego.
+En esta fase buscaremos información sobre el juego(como se juega,modo de juegos,normas...) y en base a esa información podremos crear un pseudocódigo para tener un concepto inicial de la estructura así como las distinstans funciones que compondrán el juego.
 
 ### Segunda Fase: Diseño inicial
-Fase en la que se absorbe toda la información obtenida de la fase anterior y se plasma en forma de pseudocódigo.El lenguaje que se utilizará para la implementación del juego sera Python,eso quiere decir, que a la hora de elaborar el pseudocódigo debemos acomodarlo al lenguaje que se va utilizar.Teniendo en cuenta eso,se determinará las distintas funciones qque tendra nuestra programa inicial.
+Fase en la que se absorbe toda la información obtenida de la fase anterior y se plasma en forma de pseudocódigo.El lenguaje que se utilizará para la implementación del juego sera Python,eso quiere decir, que a la hora de elaborar el pseudocódigo debemos acomodarlo al lenguaje que se va utilizar.Teniendo en cuenta eso,se determinará las distintas funciones que tendra nuestra programa inicial.
 
 ### Tercera Fase: Codificación y desarollo del juego
-En esta etapa se compondrá la codificación del juego.Se hará un fichero maestro donde se plasmará la estructura junto a las funciones relacionadas con el 4 en raya.Con las herramientas que nos ofrece Git,cada miembro del equipo podra desarrollar las distintas funciones en un archivo que mediante comandos y con la aprobación del otro miembro,se podra fusionar con en el fichero maestro.
+En esta etapa se compondrá la codificación del juego.Se hará un fichero maestro donde se plasmará la estructura junto a las funciones relacionadas con el 4 en raya.Con las herramientas que nos ofrece Git,cada miembro del equipo podrá desarrollar las distintas funciones en un archivo que mediante comandos y con la aprobación del otro miembro,se podra fusionar con en el fichero maestro.
 
 ### Cuarta Fase: Test de pruebas y errores
-En esta ultima fase ponemos a prueba el juego y verificar las distintas funcionalidades que la componen.También servira para detectar cualquier error que pueda surgir a la hora de ejecutarlo.
+En esta última fase ponemos a prueba el juego y verificar las distintas funcionalidades que la componen.También servira para detectar cualquier error que pueda surgir a la hora de ejecutarlo.
 
 
 # Documentación del Juego
 
 ## Documento Definición Del juego
 
-A continuación,explicaremos como se juega al 4 en raya. Como queremos hacer 2 modos, solo desarollaremos un0 de ellos, ya que tienen casi las mismas funcionalidades.
+A continuación,explicaremos como se juega al 4 en raya. Como queremos hacer 2 modos, solo desarollaremos uno de ellos, ya que tienen casi las mismas funcionalidades.
 
 **4 EN RAYA (1 VS 1)**
 - **Antes de la partida**
 ~~~
 1. Los jugadores han de seleccionar el tipo de ficha que querrán para jugar.
 2. Ya con las fichas seleccionadas se le repartiran 21 fichas a cada uno porque el tablero solo tiene 6x7 casillas.
-3. Se decide quien de los dos jugaadores metera la 1º ficha al tablero
+3. Se decide quien de los dos jugadores meterá la 1º ficha al tablero
 ~~~
 ***Inicio partida***
 
@@ -53,11 +53,11 @@ Hay 2 formas de finalizar el juego:
 
 # Documento Diseño Inicial
 ## Inicio
-Funcion que te imprime un Menu,donde se visualizara las distintas opciones a elegir.
+Función que te imprime un Menu,donde se visualizará las distintas opciones a elegir.
 
-Habra un bucle en el cual hasta que el usuario no elija la opción correcta no sale.
+Habrá un bucle en el cual hasta que el usuario no elija la opción correcta no sale.
 
-EL ususario tendra 4 opciones a elegir:
+EL ususario tendrá 4 opciones a elegir:
 
 1. Juego contra la CPU
 2. Juego 1 VS 1
@@ -68,9 +68,9 @@ Dentro de cada **OPCIÓN**,el usuario encontrará una **FUNCIÓN** que ejecute l
 
 #### Opción Juego contra CPU
 
-Se visualizara por pantalla,mediante una **función** , otro menu para que el usuario determine el nivel de dificultad.
+Se visualizará por pantalla,mediante una **función** , otro menu para que el usuario determine el nivel de dificultad.
 
-Dependeindo de la elección se ejecutará la correspondiente función para que de inicio al juego.
+Dependiendo de la elección se ejecutará la correspondiente función para que de inicio al juego.
 
 - USUARIO ELIGE MODO FACIL CPU 
 ~~~
@@ -78,9 +78,9 @@ Se imprimirá por pantalla una función que te mostrará el tablero vacio.
 
 Se inicia un bucle,donde se va alternando los turnos hasta que ciertas condiciones se cumplan(Victoria o empate).
 
-Se te pedira que introduzcas un numero entre el 0 y el 6 para que introduzcas la ficha donde quieras
+Se te pedirá que introduzcas un numero entre el 0 y el 6 para que introduzcas la ficha donde quieras
 
-Una vez introducida, se asegura que el numero esta entre los numeros establecidos
+Una vez introducida, se asegura que el numero esta entre los números establecidos
 
 Despues comprueba si la columna seleccionada hay un hueco disponible para meter la ficha mediante una funcion.
 
@@ -178,7 +178,7 @@ Finaliza el programa
 
 # Documento Codificación y Desarollo del Juego
 
-El codigo se divide en diferentes funciones las cuales trabajan conjuntamente. Estas se ejecutan conforme la opcion seleccionada en el menu principal. También cuenta con variables a las cuales acceden las diferentes funciones.
+El código se divide en diferentes funciones las cuales trabajan conjuntamente. Estas se ejecutan conforme la opción seleccionada en el menu principal. También cuenta con variables a las cuales acceden las diferentes funciones.
 ### Partes:
 
 1.  Variables generales. Estas son basicamente los interruptores de los algoritmos y los elementos que necesitan ser accedidos por diferentes funciones.
@@ -235,7 +235,7 @@ def meter_fitcha(tablero, fila_disp, col, fitcha):
     tablero[fila_disp][col] = fitcha           #Coloca la ficha en columna yfila disponible 
 ~~~
 
-3. Funcion del juego. Esta permite comprobar el ganador. Mediante esta funcion se comprueba si existen 4 fitchas iguales en linea. Existen 4 casos:
+3. Función del juego. Esta permite comprobar el ganador. Mediante esta función se comprueba si existen 4 fichas iguales en linea. Existen 4 casos:
 ~~~
 1. Para los espacios horizontales se recorre la matriz restando 3 columnas, asi queda solo la posiblidad de máximo 4 fichas consecutivas:
 
@@ -267,7 +267,7 @@ def meter_fitcha(tablero, fila_disp, col, fitcha):
           return True
 ~~~
 
-4. Para el caso de un empate existe una funcion que comprueba que el tablero está completo.:
+4. Para el caso de un empate existe una función que comprueba que el tablero está completo.:
 ~~~
 
 #################### Funcion parar determinar si hay un empate  ######################
@@ -279,7 +279,7 @@ def empate(tablero):
   return True      
 ~~~
 
-5.  El modo 1 vs 1 se encuentra en una funcion que se activa mediante el interruptor del menu:
+5.  El modo 1 vs 1 se encuentra en una función que se activa mediante el interruptor del menu:
 ~~~
 def inicio1vs1(tablero,historial):
 #########  INTERCAMBIO DE TURNOS (inicializar turno en 0)##############
@@ -345,7 +345,7 @@ def inicio1vs1(tablero,historial):
 
 ~~~
 
-6.  En el modo vs CPU se distingue entre facil y dificil, esta opción se puede escoger en el menu principal:
+6.  En el modo vs CPU se distingue entre fácil y díficil, esta opción se puede escoger en el menu principal:
 
 Vamos primero con el modo facil de la CPU en la cual la parte del jugador es la misma que el anterior pero la parte del CPU cambia.
 ~~~
@@ -376,7 +376,7 @@ Vamos primero con el modo facil de la CPU en la cual la parte del jugador es la 
     turno = turno%2 #### permite interclar turnos "" 
 ~~~
 
-Ahora ,pasemos al modo dificil, esta funcion tiene un par de funciones ,para determinar su victotia.Basicamente va intentar evitar tu victoria.
+Ahora ,pasemos al modo díficil, esta funcion tiene un par de funciones ,para determinar su victotia.Basicamente va intentar evitar tu victoria.
 ~~~
     else:
       print("CPU pensando..................")
@@ -516,7 +516,7 @@ def movimientoGanadorCPU(ficha):
 
 Cada uno de las dos funciones,tiene una otra funcion para colocar la ficha en la casilla seleccionada.Tiene la una codificación similar excepto a la hora de volver un return True  te devuelve la ficha ya colocada en el casillero. 
 
-7. Menu principal. Este interactua sobre todo las funciones del juego. Existen 2 funciones para la estetica del menu:
+7. Menu principal. Este interactua sobre todo las funciones del juego. Existen 2 funciones para la estética del menu:
 ~~~
 
 ########################## MENUS DEL JUEGO (activa los interruptores) #####################################
@@ -583,7 +583,7 @@ while controlMenu == False:
 # Documento Test de Pruebas y Errores
 ### Fallo:
 ~~~
-El tablero se rellena de arrib a bajo puesto que es una matriz.
+El tablero se rellena de arriba a abajo puesto que es una matriz.
 ~~~
 ### Solución:
 ~~~
@@ -599,7 +599,7 @@ El tablero no borra la partida anterior para poder jugar la siguiente partida
 ~~~
 ### Solución:
 ~~~
-Crear una funcion que vacia la matriz recorriendo esta y eliminando las fichas en las posiciones que se encuentran:
+Crear una función que vacia la matriz recorriendo esta y eliminando las fichas en las posiciones que se encuentran:
 
 #### Funcion para resetear el tablero
 
