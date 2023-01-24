@@ -177,7 +177,7 @@ Finaliza el programa
 
 
 # Documento Codificación y Desarollo del Juego
-## División
+
 El codigo se divide en diferentes funciones las cuales trabajan conjuntamente. Estas se ejecutan conforme la opcion seleccionada en el menu principal. También cuenta con variables a las cuales acceden las diferentes funciones.
 ### Partes:
 
@@ -185,17 +185,19 @@ El codigo se divide en diferentes funciones las cuales trabajan conjuntamente. E
 ~~~
 import datetime
 import random 
+import time      #Distintas librerias que se han utilizado
 
 game_over2 = True #### interruptor para 1 vs 1
-gameOver = True #### interruptor para 1 vs CPU
+gameOver = True #### interruptor para 1 vs CPU .Contoladores
 
 ####### interruptor + declaracion de historial #######
 controlMenu = False
-historial = {}
+historial = {}    #Diccionario para almacenar los ganadores despues de cada partida
+
 ################## TABLERO (matriz: array 2D, 6 filas x 7 columnas) ######################################
 tablero = [["","","","","","",""], ["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""]]
 filas = 6
-columnas = 7
+columnas = 7  #EL TABLERO EN EL 4 EN RAYA tiene 42 casillas(6 filas y 4 columnas)
 ~~~
 
 2. Funciones del tablero. Estas permiten imprimir el tablero y conocer su estado para poder operar sobre este (huecos disponibles, lugares validos, introducir una ficha)
@@ -213,7 +215,7 @@ def imprimir_tablero(tablero):
         print("", tablero[x][y], end=" |")
       else:
         print(" ", tablero[x][y], end="  |")
-  print("\n   +----+----+----+----+----+----+----+")
+  print("\n   +----+----+----+----+----+----+----+") #Diseño del tablero
 
   ############### COMPROBAR LUGAR VALIDO (si columna escojida está disponible correcta) ##########
 def hueco(tablero, col):
@@ -230,7 +232,7 @@ def hueco_disponible(tablero, col):
 
 ###### INTRODUCIR FITCHA  ################
 def meter_fitcha(tablero, fila_disp, col, fitcha):
-    tablero[fila_disp][col] = fitcha
+    tablero[fila_disp][col] = fitcha           #Coloca la ficha en columna yfila disponible 
 ~~~
 
 3. Funcion del juego. Esta permite comprobar el ganador. Mediante esta funcion se comprueba si existen 4 fitchas iguales en linea. Existen 4 casos:
@@ -238,8 +240,8 @@ def meter_fitcha(tablero, fila_disp, col, fitcha):
 1. Para los espacios horizontales se recorre la matriz restando 3 columnas, asi queda solo la posiblidad de máximo 4 fichas consecutivas:
 
     ######## COMPROBAR ESPACIOS HORIZONTALES ##########
-  for y in range(columnas - 3):
-    for x in range(filas):
+  for y in range(columnas - 3):      #Como es un 4 en raya solo necesitas localizar 4 fichas
+    for x in range(filas):            #recores las columanas solamente ya que es en la misma fila.
        if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == ficha and tablero[x][y+3]=="") and (tablero[x-1][y+3]!=""):
         return True
 
@@ -273,7 +275,7 @@ def empate(tablero):
   for i in range(filas):
     for j in range(columnas):
       if tablero[i][j]=="":
-        return False
+        return False     #Recorrres el tablero entero y si hay una casilla que no tiene ficha pues eso significa que aun se sigue jugando.
   return True      
 ~~~
 
@@ -287,32 +289,32 @@ def inicio1vs1(tablero,historial):
 
   while not game_over2:
     if turn == 0:
-      col = int(input("Introduzca la columna que desea jugador 1 : "))
-      while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
-        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))
-      while hueco(tablero,col) == False:
-        col = int(input("Columna llena escoja otra : "))
-      if hueco(tablero,col) == True:
-        fila_disp = hueco_disponible(tablero,col)
-        meter_fitcha(tablero,fila_disp,col,"🔵")
+      col = int(input("Introduzca la columna que desea jugador 1 : "))    #Selección de columnas
+      while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:   #inicio bucle para que el usuario meta el numero que toca.
+        col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 1: "))     #Pedimos al usuario que lo vuelva a introducir
+      while hueco(tablero,col) == False:                        #si el hueco no esta disponible
+        col = int(input("Columna llena escoja otra : "))        #Elegir otra columna
+      if hueco(tablero,col) == True:                             #Si esta libre....
+        fila_disp = hueco_disponible(tablero,col)               #Obtener la fila
+        meter_fitcha(tablero,fila_disp,col,"🔵")                #meter la ficha en la fila y columna seleccionada
         tablero = tablero[::-1] ####### el tablero se imprime al reves debido al comportamiento de la matriz /// con este metodo se imprime como toca #######
-        print(imprimir_tablero(tablero))
-        if ganador("🔵") == True:
-          print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")
-          game_over2 == True
-          vaciarTablero(tablero,filas,columnas)
-          nombre = input("Introduce tu nombre para que sea registrado: ")
+        print(imprimir_tablero(tablero))   #Imprimir trablero
+        if ganador("🔵") == True:         #Determinar el ganador,si es el ganador
+          print("EL jugador 🔵 es el ganador, FELICIDADES!!!!!")      #Felicitar por pantalla
+          game_over2 == True                      #cambio valor para romper el bucle
+          vaciarTablero(tablero,filas,columnas)     #Funcion que vacia el tablero
+          nombre = input("Introduce tu nombre para que sea registrado: ")   #Registrarse
           fechaActual = datetime.datetime.now()
-          fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')
-          historial.update({"Ganador": nombre,"fichaUtilizada": "🔵", "Fecha": fechaFormateada })
-          return historial
-        elif empate(tablero) == True:
-          print("Ha habido un empate")
+          fechaFormateada = fechaActual.strftime('%H:%M de %d / %m / %Y')  #Obtener fecha actual formateada
+          historial.update({"Ganador": nombre,"fichaUtilizada": "🔵", "Fecha": fechaFormateada })    #añadir información anterior en el diccionario
+          return historial      #Devolver diccionario
+        elif empate(tablero) == True:   #En caso de que hay un empate,
+          print("Ha habido un empate")  #Visualizar por pantalla que ha habido un empate
           game_over2== True
-          vaciarTablero(tablero,filas,columnas)
-          return historial
+          vaciarTablero(tablero,filas,columnas)  #vaciar tablero
+          return historial    #devuelvo el historial
         tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
-    else:
+    else:      #Mismo procerso que anteriormente
       col = int(input("Introduzca la columna que desea jugador 2 : "))
       while col !=0 and col !=1 and col !=2 and col !=3 and col !=4 and col !=5 and col !=6:
         col = int(input("Columna inexistente.Vuelva a introducir una columna jugador 2: "))
@@ -338,16 +340,181 @@ def inicio1vs1(tablero,historial):
           vaciarTablero(tablero,filas,columnas)
           return historial
         tablero = tablero[::-1]
-    turn +=1  ##### Permite intercalar turnos ""
-    turn = turn%2 #### permite interclar turnos ""
+    turn +=1  ##### Permite intercalar turnos "" 
+    turn = turn%2 #### permite interclar turnos "" #Cambios de turnos
 
 ~~~
 
-6.  En el modo vs CPU se distingue entre facil y dificil, esta opcion se puede escojer en el menu principal:
+6.  En el modo vs CPU se distingue entre facil y dificil, esta opción se puede escoger en el menu principal:
+
+Vamos primero con el modo facil de la CPU en la cual la parte del jugador es la misma que el anterior pero la parte del CPU cambia.
 ~~~
 
-****** ESTO ES TUYO FABIAN *******
+    else:
+      print("CPU pensando..................") #para que actue como si esta pensando
+      time.sleep(1)   #tiempo que tardara para ejecutar la siguente instruccion.SE utiliza un import
+      eleccionCPU = random.randint(0,6)  #pido que me de un numero aleatorio entre los rangos establecidos
+      while hueco(tablero,eleccionCPU)== False:  #Siempre que haya hueco
+        eleccionCPU = random.randint(0,6)
+      if hueco(tablero,eleccionCPU)== True:
+        fila_disponible = hueco_disponible(tablero,eleccionCPU) 
+        meter_fitcha(tablero,fila_disponible,eleccionCPU,"🔴") #meto cpu mete la casilla  en la columna random que ha elegido
+        tablero = tablero[::-1]     #Mismo que 1 vs1 a partir de aqui salvo que si cpu gana o empata no se registrar la victoria
+        imprimir_tablero(tablero)
+        if ganador("🔴") == True:
+          print("Ha ganado la CPU,:P")
+          gameOver == True
+          vaciarTablero(tablero,filas,columnas)
+          return historial
+        elif empate(tablero) == True:
+          ("Ha habido un empate ,gracias por jugar. Hasta la próxima !!!")
+          game_over2== True
+          vaciarTablero(tablero,filas,columnas)
+          return historial
+        tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
+    turno +=1  ##### Permite intercalar turnos ""
+    turno = turno%2 #### permite interclar turnos "" 
 ~~~
+
+Ahora ,pasemos al modo dificil, esta funcion tiene un par de funciones ,para determinar su victotia.Basicamente va intentar evitar tu victoria.
+~~~
+    else:
+      print("CPU pensando..................")
+      time.sleep(1)
+      if movimientoGanadorCPU("🔴") == True:  #Funcion que determina si la siguienete jugada se puede ganar
+          winCPU("🔴")        #Función mete la ficha enCASILLA  si lo anterior returna un True
+          tablero = tablero[::-1] 
+          imprimir_tablero(tablero)
+          if ganador("🔴") == True:   #Deermino ganador
+            print("Ha ganado la CPU,:P")
+            gameOver3 == True
+            vaciarTablero(tablero,filas,columnas)
+            return historial
+          tablero = tablero [::-1]
+      elif moviminetoGanadorUsuario("🔵") == True:  #Determina si el siguiento movimiento puede ganar el usuario
+        evitarDerrotaCPU("🔵","🔴")  #Si lo anterior es True,esta función mete la ficha para impedir la victoria
+        tablero = tablero[::-1]
+        imprimir_tablero(tablero)
+        if ganador("🔴") == True:   #Determinar ganador
+            print("Ha ganado la CPU,:P")
+            gameOver3 == True
+            vaciarTablero(tablero,filas,columnas)
+            return historial
+        tablero = tablero [::-1]
+      else:
+        eleccionCPU = random.randint(0,6)              #A partir de aquí es como el codigo del modo Facil.
+        while hueco(tablero,eleccionCPU)== False:
+          eleccionCPU = random.randint(0,6)
+        if hueco(tablero,eleccionCPU)== True:
+          fila_disponible = hueco_disponible(tablero,eleccionCPU)
+          meter_fitcha(tablero,fila_disponible,eleccionCPU,"🔴")
+          tablero = tablero[::-1]
+          imprimir_tablero(tablero)
+          if ganador("🔴") == True:
+            print("Ha ganado la CPU,:P")
+            gameOver3 == True
+            vaciarTablero(tablero,filas,columnas)
+            return historial
+        elif empate(tablero) == True:
+          print("Ha habido un empate ,gracias por jugar. Hasta la próxima !!!")
+          game_over2== True
+          vaciarTablero(tablero,filas,columnas)
+          return historial
+        tablero = tablero[::-1] ##### devolver el orden de la matriz al original para poder ejecutar las funciones #########
+    turno +=1  ##### Permite intercalar turnos ""
+    turno = turno%2 #### permite interclar turnos ""
+~~~
+
+Y a continuación, las funciones que hace que la CPU analice las jugadas:
+~~~
+###################    Funcion que me determina que proximo movimineto que tiene el usuario para ganar  ################################
+
+def moviminetoGanadorUsuario(ficha):
+    ######## COMPROBAR ESPACIOS HORIZONTALES ##########  COMPRUEBA LOS DISTINTOS CASOS CUANDO ESTA DE MANERA HORIZONTAL
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == ficha and tablero[x][y+3]=="") and (tablero[x-1][y+3] !=""):
+        return True
+  
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if (tablero[x][y+3] == ficha and tablero[x][y+2] == ficha and tablero[x][y+1] == ficha and tablero[x][y]=="") and (tablero[x-1][y] !=""):
+          return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == "" and tablero[x][y+2] == ficha and tablero[x][y+3]== ficha) and (tablero[x-1][y+1] !=""):
+        return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == "" and tablero[x][y+3]== ficha) and (tablero[x-1][y+2] !=""):
+        return True
+
+  #### COMPROBAR ESPACIOS VERTICALES ###############    COMPRUEBA LOS DISTINTOS CASOS CUANDO ESTA DE MANERA VERTICAL
+  for y in range(columnas):
+    for x in range(filas - 3):
+       if tablero[x][y] == ficha and tablero[x+1][y] == ficha and tablero[x+2][y] == ficha and tablero[x+3][y]=="":
+        return True
+
+  ######COMPROBAR DIAGONAL NEGATIVA ########### ####### COMPRUEBA LOS DISTINTOS CASOS CUANDO ESTA DIAGONAL INVERSA
+  for y in range(columnas-3):
+    for x in range(3, filas):
+      if (tablero[x][y] == ficha and tablero[x-1][y+1] == ficha and tablero[x-2][y+2] == ficha and tablero[x-3][y+3]=="") and (tablero[x-2][y-3]!=""):
+        return True
+
+  ####### COMPROBAR DIAGONAL POSITIVA ############        COMPRUEBA LAS DISNTINTOS CASOS CUANDO ESTA DE MANERA DIAGONAL
+    for y in range(columnas-3):
+      for x in range(filas-3):
+        if (tablero[x][y] == ficha and tablero[x+1][y+1] == ficha and tablero[x+2][y+2] == ficha and tablero[x+3][y+3]=="") and (tablero[x+2][y+3]!=""):
+          return True
+~~~
+
+~~~
+###################    Funcion que me determina que proximo movimineto  que tiene la CPU para ganar  ################################
+
+def movimientoGanadorCPU(ficha):
+    ######## COMPROBAR ESPACIOS HORIZONTALES ##########   LO MISMO QUE LO ANTERIOR CUMPLE CON LAS MISMAS
+  for y in range(columnas - 3):
+    for x in range(filas):
+       if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == ficha and tablero[x][y+3]=="") and (tablero[x-1][y+3]!=""):
+        return True
+
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if (tablero[x][y+3] == ficha and tablero[x][y+2] == ficha and tablero[x][y+1] == ficha and tablero[x][y]=="") and (tablero[x-1][y] !=""):
+          return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == "" and tablero[x][y+2] == ficha and tablero[x][y+3]== ficha) and (tablero[x-1][y+1] !=""):
+        return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == "" and tablero[x][y+3]== ficha) and (tablero[x-1][y+2] !=""):
+        return True
+
+  #### COMPROBAR ESPACIOS VERTICALES ###############
+  for y in range(columnas):
+    for x in range(filas - 3):
+       if tablero[x][y] == ficha and tablero[x+1][y] == ficha and tablero[x+2][y] == ficha and tablero[x+3][y]=="":
+        return True
+
+  ######COMPROBAR DIAGONAL NEGATIVA ########### #######
+  for y in range(columnas-3):
+    for x in range(3, filas):
+      if (tablero[x][y] == ficha and tablero[x-1][y+1] == ficha and tablero[x-2][y+2] == ficha and tablero[x-3][y+3]=="") and (tablero[x+2][y-3]!=""):
+        return True
+
+  ####### COMPROBAR DIAGONAL POSITIVA ############
+    for y in range(columnas-3):
+      for x in range(filas-3):
+        if (tablero[x][y] == ficha and tablero[x+1][y+1] == ficha and tablero[x+2][y+2] == ficha and tablero[x+3][y+3]=="") and (tablero[x+2][y+3]!=""):
+          return True
+~~~
+
+Cada uno de las dos funciones,tiene una otra funcion para colocar la ficha en la casilla seleccionada.Tiene la una codificación similar excepto a la hora de volver un return True  te devuelve la ficha ya colocada en el casillero. 
 
 7. Menu principal. Este interactua sobre todo las funciones del juego. Existen 2 funciones para la estetica del menu:
 ~~~
@@ -444,4 +611,40 @@ def vaciarTablero(tablero,filas,columnas):
       elif tablero[i][j] == "🔴":
         tablero[i][j] = ""
   return tablero
+~~~
+
+### Fallo:
+~~~
+Si introduces un valor que no sea de los demandados en el menu o cuando estas jugando,da un error y se rompe el progrma.
+~~~
+### Solución
+~~~
+Crear una función que me arregle el tema de los errores
+
+################## TRATACION DE ERRORES #########################
+def treat_error(prompt):
+   while True:
+    try:
+        prompt = int(input("Introduce numero: "))
+        return prompt
+    except ValueError:
+        print("Valor introduzdido incorrecto, vuelve a probar")
+~~~
+
+### Fallo:
+~~~
+Problemas para guardar en el diccionario los ganadores de la partida.
+~~~
+### Solución
+~~~
+Declarar el diccionario como variable global , pasarlo por parametro en las distintas funciones y respetando la sintaxis a la hora de hacer los returns
+~~~
+
+### Fallo:
+~~~
+Fallos al hacer la CPU en modo dificil.
+~~~
+### Solución
+~~~
+Crear funciones que miminicen las carencias de la CPU a la hora de leer el tablero.
 ~~~
