@@ -90,6 +90,28 @@ def movimientoGanadorCPU(ficha):
       if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == "" and tablero[x][y+3]== ficha) and (tablero[x-1][y+2] !=""):
         return True
 
+##########################  ZOna conflictiva horizontal cuando es la fila de abajo del todo ######################
+######### opero con esa fila##########
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[0][y] == ficha and tablero[0][y+1] == ficha and tablero[0][y+2] == ficha and tablero[0][y+3]=="":
+          return True
+
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[0][y+3] == ficha and tablero[0][y+2] == ficha and tablero[0][y+1] == ficha and tablero[0][y]=="":
+          return True
+    
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[0][y] == ficha and tablero[0][y+1] == "" and tablero[0][y+2] == ficha and tablero[0][y+3]== ficha:
+        return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[0][y] == ficha and tablero[0][y+1] == ficha and tablero[0][y+2] == "" and tablero[0][y+3]== ficha:
+        return True
+
   #### COMPROBAR ESPACIOS VERTICALES ###############
   for y in range(columnas):
     for x in range(filas - 3):
@@ -138,6 +160,29 @@ def winCPU(FICHA):
         tablero[x][y+2] = FICHA
         return tablero
 
+##########################  ZOna conflictiva horizontal cuando es la fila de abajo del todo ######################
+######### opero con esa fila##########
+
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[0][y] == FICHA and tablero[0][y+1] == FICHA and tablero[0][y+2] == FICHA and tablero[0][y+3]=="":
+          return True
+
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[0][y+3] == FICHA and tablero[0][y+2] == FICHA and tablero[0][y+1] == FICHA and tablero[0][y]=="":
+          return True
+    
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[0][y] == FICHA and tablero[0][y+1] == "" and tablero[0][y+2] == FICHA and tablero[0][y+3]== FICHA:
+        return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[0][y] == FICHA and tablero[0][y+1] == FICHA and tablero[0][y+2] == "" and tablero[0][y+3]== FICHA:
+        return True
+
   #### COMPROBAR ESPACIOS VERTICALES ###############
   for y in range(columnas):
     for x in range(filas - 3):
@@ -183,6 +228,28 @@ def moviminetoGanadorUsuario(ficha):
   for y in range(columnas - 3):
     for x in range(filas):
       if (tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == "" and tablero[x][y+3]== ficha) and (tablero[x-1][y+2] !=""):
+        return True
+
+##########################  ZOna conflictiva horizontal cuando es la fila de abajo del todo ######################
+######### opero con esa fila##########
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[0][y] == ficha and tablero[0][y+1] == ficha and tablero[0][y+2] == ficha and tablero[0][y+3]=="":
+          return True
+
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[0][y+3] == ficha and tablero[0][y+2] == ficha and tablero[0][y+1] == ficha and tablero[0][y]=="":
+          return True
+    
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[0][y] == ficha and tablero[0][y+1] == "" and tablero[0][y+2] == ficha and tablero[0][y+3]== ficha:
+        return True
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[0][y] == ficha and tablero[0][y+1] == ficha and tablero[0][y+2] == "" and tablero[0][y+3]== ficha:
         return True
 
   #### COMPROBAR ESPACIOS VERTICALES ###############
@@ -231,6 +298,32 @@ def evitarDerrotaCPU(ficha,FICHA):
     for x in range(filas):
       if tablero[x][y] == ficha and tablero[x][y+1] == ficha and tablero[x][y+2] == "" and tablero[x][y+3]== ficha:
         tablero[x][y+2] = FICHA
+        return tablero
+
+##########################  ZOna conflictiva horizontal cuando es la fila de abajo del todo ######################
+######### opero con esa fila##########
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[0][y] == ficha and tablero[0][y+1] == ficha and tablero[0][y+2] == ficha and tablero[0][y+3]=="":
+          tablero[0][y+3] = FICHA
+          return tablero
+
+    for y in range(columnas - 3):
+      for x in range(filas):
+        if tablero[0][y+3] == ficha and tablero[0][y+2] == ficha and tablero[0][y+1] == ficha and tablero[0][y]=="":
+          tablero[0][y] = FICHA
+          return tablero
+    
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[0][y] == ficha and tablero[0][y+1] == "" and tablero[0][y+2] == ficha and tablero[0][y+3]== ficha:
+        tablero[0][y+1] = FICHA
+        return tablero
+
+  for y in range(columnas - 3):
+    for x in range(filas):
+      if tablero[0][y] == ficha and tablero[0][y+1] == ficha and tablero[0][y+2] == "" and tablero[0][y+3]== ficha:
+        tablero[0][y+2] = FICHA
         return tablero
 
   #### COMPROBAR ESPACIOS VERTICALES ###############
@@ -571,7 +664,7 @@ while controlMenu == False:
           Opcion = treat_error(auxiliar)
         else:
           gameOver3 = False
-          inicioVsCPUmodoDificil(tablero)
+          inicioVsCPUmodoDificil(tablero,historial)
           Menu()
           print("Que desea hacer ahora ")
           Opcion = treat_error(auxiliar)
